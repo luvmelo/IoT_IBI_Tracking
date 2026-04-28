@@ -1,0 +1,17 @@
+[project]
+name = "radar-analysis"
+version = "0.1.0"
+description = "Offline analysis of IWR1443 + DCA1000 captures (Mac side)"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.4",
+    "scipy>=1.17.1",
+]
+
+[tool.uv]
+package = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["radar_analysis*"]
