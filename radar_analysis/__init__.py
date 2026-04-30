@@ -13,6 +13,34 @@ from radar_analysis.reader import (
     load_npz,
     reshape_iwr1443_frame,
 )
+from radar_analysis.synthetic import radar_phase_signal, synthetic_range_cube
+from radar_analysis.phase_processing import (
+    remove_dc,
+    extract_phase,
+    detrend_median,
+    despike_hampel,
+    motion_mask,
+)
+from radar_analysis.chest_bin_selection import select_chest_bin
+from radar_analysis.heartbeat_extractors import (
+    bandpass,
+    extract_respiration,
+    extract_heartbeat,
+)
+from radar_analysis.beat_detection import (
+    detect_beats,
+    parabolic_refine,
+    peaks_to_ibi_ms,
+    clean_ibi,
+)
+from radar_analysis.hrv_metrics import (
+    mean_ibi_ms,
+    mean_hr_bpm,
+    sdnn_ms,
+    rmssd_ms,
+    pnn50,
+)
+from radar_analysis.pipeline import PipelineResult, run_pipeline
 
 __all__ = [
     "RadarConfig",
@@ -20,4 +48,26 @@ __all__ = [
     "load_bin",
     "load_npz",
     "reshape_iwr1443_frame",
+    "radar_phase_signal",
+    "synthetic_range_cube",
+    "remove_dc",
+    "extract_phase",
+    "detrend_median",
+    "despike_hampel",
+    "motion_mask",
+    "select_chest_bin",
+    "bandpass",
+    "extract_respiration",
+    "extract_heartbeat",
+    "detect_beats",
+    "parabolic_refine",
+    "peaks_to_ibi_ms",
+    "clean_ibi",
+    "mean_ibi_ms",
+    "mean_hr_bpm",
+    "sdnn_ms",
+    "rmssd_ms",
+    "pnn50",
+    "PipelineResult",
+    "run_pipeline",
 ]
