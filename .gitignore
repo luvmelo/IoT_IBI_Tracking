@@ -62,3 +62,5 @@ _smoke.*
 *.key
 secrets.json
 credentials.json
+docs/
+/docs
