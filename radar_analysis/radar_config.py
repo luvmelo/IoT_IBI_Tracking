@@ -62,6 +62,17 @@ class RadarConfig(OrderedDict):
         tx = [int(x) for x in self["ar1.ChanNAdcConfig"][0:3]]
         n_tx = sum(tx)
 
+        # The Mac-side reshape (radar_analysis.reader.reshape_iwr1443_frame)
+        # assumes a single-TX layout per CLAUDE.md. TDM-MIMO would interleave
+        # chirps across TX1/TX2/TX3 and needs a deinterleave step that does
+        # not exist yet — silently producing wrong arrays is the failure mode
+        # we want to avoid, so fail loudly here.
+        if n_tx != 1:
+            raise NotImplementedError(
+                f"radar_analysis only supports single-TX captures (got n_tx={n_tx}). "
+                f"TDM-MIMO requires a deinterleave step in reshape_iwr1443_frame."
+            )
+
         n_samples = int(self["ADC_SAMPLES"])
 
         # 2 bytes per int16 sample, 2x for I+Q if complex

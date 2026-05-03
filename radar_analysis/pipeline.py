@@ -31,7 +31,6 @@ import numpy as np
 from radar_analysis.beat_detection import (
     clean_ibi,
     detect_beats,
-    peaks_to_ibi_ms,
 )
 from radar_analysis.chest_bin_selection import select_chest_bin
 from radar_analysis.heartbeat_extractors import extract_heartbeat
@@ -43,11 +42,11 @@ from radar_analysis.hrv_metrics import (
     sdnn_ms,
 )
 from radar_analysis.phase_processing import (
+    coherent_combine_rx,
     despike_hampel,
     detrend_median,
     extract_phase,
     motion_mask,
-    remove_dc,
 )
 
 
@@ -66,6 +65,7 @@ class PipelineResult:
     ibi_ms: np.ndarray = field(repr=False)
     nn_ms: np.ndarray = field(repr=False)
     metrics: dict[str, float]
+    warnings: list[str] = field(default_factory=list)
 
     def to_summary(self) -> dict[str, Any]:
         """JSON-safe summary (drops the big arrays)."""
@@ -82,9 +82,10 @@ def run_pipeline(
     *,
     range_res_m: float,
     fs_slow_hz: float,
-    chest_window_m: tuple[float, float] = (0.3, 1.5),
+    chest_window_m: tuple[float, float] = (0.3, 2.5),
     hr_band_hz: tuple[float, float] = (0.8, 4.0),
     detrend_window_s: float = 2.0,
+    min_nn_for_hrv: int = 20,
     out_dir: Path | str | None = None,
     save_plots: bool = True,
 ) -> PipelineResult:
@@ -98,15 +99,23 @@ def run_pipeline(
 
     n_frames = rfft.shape[0]
     duration_s = n_frames / fs_slow_hz
+    warnings: list[str] = []
 
     chest_bin, score = select_chest_bin(
-        rfft, range_res_m=range_res_m, search_window_m=chest_window_m
+        rfft,
+        range_res_m=range_res_m,
+        search_window_m=chest_window_m,
+        fs_slow_hz=fs_slow_hz,
+        motion_band_hz=hr_band_hz,
     )
     chest_range_m = chest_bin * range_res_m
 
-    # Coherent integration: average chirps within frame, then RX → 1 complex per frame
-    z_at_bin = rfft[:, :, chest_bin, :].mean(axis=(1, 2))      # (F,) complex
-    z_centered = remove_dc(z_at_bin)
+    # Coherent integration: chirps within frame are temporally close (~ms apart)
+    # so they are phase-aligned and can be averaged in the complex domain. RX
+    # channels are NOT phase-aligned (RF path length differs per channel), so
+    # combine via per-RX circle-fit DC removal + clutter-phase alignment.
+    z_per_rx = rfft[:, :, chest_bin, :].mean(axis=1)           # (F, R) complex
+    z_centered = coherent_combine_rx(z_per_rx)                 # (F,)  complex
     phi_raw = extract_phase(z_centered)
     phi_detrended = detrend_median(phi_raw, fs=fs_slow_hz, window_s=detrend_window_s)
     phi_clean = despike_hampel(phi_detrended)
@@ -115,11 +124,33 @@ def run_pipeline(
     heartbeat = extract_heartbeat(phi_clean, fs=fs_slow_hz, low_hz=hr_band_hz[0], high_hz=hr_band_hz[1])
 
     peak_times_s = detect_beats(heartbeat, fs=fs_slow_hz)
-    ibi_ms = peaks_to_ibi_ms(peak_times_s)
+
+    # Apply the motion mask to peak detection: drop beats inside motion-flagged
+    # frames, and reject IBIs whose [t_a, t_b] window overlaps any motion-flagged
+    # frame. Without this gate, body movement produces large transient peaks in
+    # the heartbeat band that dominate the IBI series and inflate HRV metrics.
+    peak_times_s, ibi_ms, motion_drops = _apply_motion_gate(
+        peak_times_s, motion_ok, fs_slow_hz
+    )
+    if motion_drops:
+        warnings.append(
+            f"motion gate dropped {motion_drops} beat(s) / IBI(s) overlapping motion-flagged frames"
+        )
+
     keep_mask = clean_ibi(ibi_ms)
     nn_ms = ibi_ms[keep_mask]
 
     metrics = _compute_hrv_metrics(nn_ms)
+
+    if nn_ms.size < min_nn_for_hrv:
+        warnings.append(
+            f"only {nn_ms.size} NN intervals after cleaning (< {min_nn_for_hrv}); "
+            f"SDNN/RMSSD/pNN50 are statistically unreliable"
+        )
+    if duration_s < 60.0:
+        warnings.append(
+            f"capture is {duration_s:.1f} s (< 60 s); short-term HRV norms assume ≥ 60 s"
+        )
 
     result = PipelineResult(
         chest_bin=chest_bin,
@@ -135,6 +166,7 @@ def run_pipeline(
         ibi_ms=ibi_ms,
         nn_ms=nn_ms,
         metrics=metrics,
+        warnings=warnings,
     )
 
     if out_dir is not None:
@@ -147,6 +179,41 @@ def run_pipeline(
             json.dump(result.to_summary(), f, indent=2)
 
     return result
+
+
+def _apply_motion_gate(
+    peak_times_s: np.ndarray,
+    motion_ok: np.ndarray,
+    fs: float,
+) -> tuple[np.ndarray, np.ndarray, int]:
+    """Drop peaks in motion-flagged frames + IBIs whose window overlaps any.
+
+    Returns ``(kept_peaks_s, kept_ibi_ms, n_dropped)``. The caller still gets
+    the cleaned peak series; only contaminated beats are removed.
+    """
+    if peak_times_s.size == 0:
+        return peak_times_s, np.array([], dtype=np.float64), 0
+
+    n_frames = motion_ok.size
+    # 1) drop peaks that fall on a motion-flagged frame
+    peak_idx = np.clip(np.round(peak_times_s * fs).astype(int), 0, n_frames - 1)
+    peak_keep = motion_ok[peak_idx]
+    peaks_clean = peak_times_s[peak_keep]
+    n_peak_drop = int((~peak_keep).sum())
+
+    if peaks_clean.size < 2:
+        return peaks_clean, np.array([], dtype=np.float64), n_peak_drop
+
+    # 2) drop IBIs whose [t_a, t_b] window contains any motion-flagged frame
+    ibi_ms_full = np.diff(peaks_clean) * 1000.0
+    keep = np.ones(ibi_ms_full.size, dtype=bool)
+    for i in range(ibi_ms_full.size):
+        a = max(0, int(np.floor(peaks_clean[i] * fs)))
+        b = min(n_frames, int(np.ceil(peaks_clean[i + 1] * fs)) + 1)
+        if not motion_ok[a:b].all():
+            keep[i] = False
+
+    return peaks_clean, ibi_ms_full[keep], n_peak_drop + int((~keep).sum())
 
 
 def _compute_hrv_metrics(nn_ms: np.ndarray) -> dict[str, float]:

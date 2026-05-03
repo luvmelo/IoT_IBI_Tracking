@@ -16,6 +16,8 @@ from radar_analysis.reader import (
 from radar_analysis.synthetic import radar_phase_signal, synthetic_range_cube
 from radar_analysis.phase_processing import (
     remove_dc,
+    circle_fit_dc,
+    coherent_combine_rx,
     extract_phase,
     detrend_median,
     despike_hampel,
@@ -51,6 +53,8 @@ __all__ = [
     "radar_phase_signal",
     "synthetic_range_cube",
     "remove_dc",
+    "circle_fit_dc",
+    "coherent_combine_rx",
     "extract_phase",
     "detrend_median",
     "despike_hampel",

@@ -31,12 +31,13 @@ def detect_beats(
     if fs <= 0:
         raise ValueError("fs must be positive")
     distance = max(1, int(round(60.0 / max_bpm * fs)))
-    sigma = float(np.std(h))
-    if sigma == 0:
-        # Flat signal → there are no beats. Falling back to find_peaks default
-        # would return every local max from numerical noise.
+    # MAD-based scale (robust to outlier amplitude bursts) instead of std.
+    # Without this, motion-burst residuals inflate std and the prominence
+    # threshold rises above weak true beats during quiet periods.
+    mad = float(np.median(np.abs(h - np.median(h))))
+    if not np.isfinite(mad) or mad <= 0:
         return np.array([], dtype=np.float64)
-    prominence = prominence_factor * sigma
+    prominence = prominence_factor * 1.4826 * mad  # 1.4826 → sigma-equivalent for Gaussian
     peaks, _ = find_peaks(h, distance=distance, prominence=prominence)
     if not refine or peaks.size == 0:
         return peaks.astype(np.float64) / fs
@@ -70,7 +71,7 @@ def clean_ibi(
     *,
     low_ms: float = 300.0,
     high_ms: float = 1500.0,
-    rel_tol: float = 0.20,
+    rel_tol: float = 0.30,
     median_window: int = 5,
 ) -> np.ndarray:
     """Bool mask: True where the interval is physiologic and within `rel_tol`
@@ -78,6 +79,11 @@ def clean_ibi(
 
     Local median uses a centered window of `median_window` intervals; if the
     series is shorter than the window we fall back to the global median.
+
+    `rel_tol = 0.30` matches Kubios "medium" filter and preserves real RSA
+    (respiratory sinus arrhythmia) variability, which can exceed 20% per
+    breath cycle. Tighter tolerances bias SDNN/RMSSD toward zero by
+    rejecting the very HRV variability they are meant to measure.
     """
     if ibi_ms.size == 0:
         return np.array([], dtype=bool)

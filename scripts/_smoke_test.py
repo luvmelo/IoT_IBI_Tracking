@@ -22,7 +22,7 @@ CFG_LUA = """\
 COM_PORT = 3
 RADARSS_PATH = "C:\\\\fake.bin"
 MASTERSS_PATH = "C:\\\\fake.bin"
-NUM_TX = 3
+NUM_TX = 1
 NUM_RX = 4
 START_FREQ = 77
 IDLE_TIME = 138
@@ -38,7 +38,7 @@ NUM_FRAMES = 0
 CHIRP_LOOPS = 8
 PERIODICITY = 100
 ar1.SelectChipVersion("XWR1443")
-ar1.ChanNAdcConfig(1, 1, 1, 1, 1, 1, 1, 2, 1, 0)
+ar1.ChanNAdcConfig(1, 0, 0, 1, 1, 1, 1, 2, 1, 0)
 """
 
 

@@ -19,11 +19,20 @@ def select_chest_bin(
     rfft: np.ndarray,
     range_res_m: float,
     *,
-    search_window_m: tuple[float, float] = (0.3, 1.5),
+    search_window_m: tuple[float, float] = (0.3, 2.5),
+    fs_slow_hz: float | None = None,
+    motion_band_hz: tuple[float, float] = (0.8, 3.0),
     use_motion_variance: bool = True,
     motion_weight: float = 1.0,
 ) -> tuple[int, float]:
-    """Return `(bin_idx, score)` for the strongest moving bin in the search window."""
+    """Return `(bin_idx, score)` for the strongest moving bin in the search window.
+
+    When `fs_slow_hz` is provided, the motion-variance term is computed on
+    phase bandpassed to `motion_band_hz` (defaults to the heart-rate band).
+    Without this, raw phase variance is dominated by respiration / body sway
+    and the picker happily selects bins where the chest *isn't* — which is
+    what happened on real captures with default settings.
+    """
     if rfft.ndim != 4:
         raise ValueError(f"rfft must be 4-D (F, C, S, R); got shape {rfft.shape}")
     n_range_bins = rfft.shape[2]
@@ -53,7 +62,21 @@ def select_chest_bin(
         # Average chirps within each frame to one complex value per (frame, bin)
         per_frame = coh.mean(axis=1)              # (F, S)
         phase = np.unwrap(np.angle(per_frame), axis=0)
-        phase_var = phase.var(axis=0)             # (S,)
+        if fs_slow_hz is not None:
+            from radar_analysis.heartbeat_extractors import bandpass
+            try:
+                # filtfilt operates on the last axis; transpose so per-bin
+                # phase becomes the inner dim, then transpose back.
+                phase_band = bandpass(
+                    phase.T, fs_slow_hz, motion_band_hz[0], motion_band_hz[1]
+                ).T
+                phase_var = phase_band.var(axis=0)
+            except ValueError:
+                # Capture too short for filtfilt's padlen — fall back to the
+                # full-band variance with a clear name for debugging.
+                phase_var = phase.var(axis=0)
+        else:
+            phase_var = phase.var(axis=0)
         denom = float(phase_var.max())
         phase_var_norm = phase_var / denom if denom > 0 else np.zeros_like(phase_var)
         score = score * (1.0 + motion_weight * phase_var_norm)
