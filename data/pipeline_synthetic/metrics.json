@@ -1,0 +1,17 @@
+{
+  "chest_bin": 18,
+  "chest_range_m": 0.72,
+  "chest_bin_score": 4014642.0,
+  "fs_slow_hz": 25.0,
+  "duration_s": 30.0,
+  "n_frames": 750,
+  "metrics": {
+    "mean_ibi_ms": 833.204427228874,
+    "mean_hr_bpm": 72.01113921051997,
+    "sdnn_ms": 2.345214441863254,
+    "rmssd_ms": 2.4492586792707858,
+    "pnn50_pct": 0.0
+  },
+  "n_beats_detected": 36,
+  "n_intervals_kept": 35
+}

@@ -25,20 +25,20 @@ Thumbs.db
 *.swo
 *~
 
-# ─── Radar captures (large + binary; never commit) ───────────────────────
-# Keep the data/ directory itself via data/.gitkeep, but ignore everything
-# inside it. Captured .bin files can be 100s of MB; .npz can be 10s of MB.
-data/*
-!data/.gitkeep
-!data/README.md
+# # ─── Radar captures (large + binary; never commit) ───────────────────────
+# # Keep the data/ directory itself via data/.gitkeep, but ignore everything
+# # inside it. Captured .bin files can be 100s of MB; .npz can be 10s of MB.
+# data/*
+# !data/.gitkeep
+# !data/README.md
 
-# Common capture artifacts that might land outside data/ by accident
-*.bin
-*.npz
-adc_data*.bin
-adc_data*.npz
-pktlogfile.txt
-DataCaptureDemo*.log
+# # Common capture artifacts that might land outside data/ by accident
+# *.bin
+# *.npz
+# adc_data*.bin
+# adc_data*.npz
+# pktlogfile.txt
+# DataCaptureDemo*.log
 
 # Smoke-test scratch outputs
 _smoke.*
