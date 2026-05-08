@@ -1,0 +1,1395 @@
+Last login: Sun May  3 17:28:21 on ttys000
+(base) yutongwu@dhcp-10-31-137-221 ~ % pip3 install --user bleak
+Requirement already satisfied: bleak in /opt/anaconda3/lib/python3.11/site-packages (3.0.2)
+Requirement already satisfied: typing-extensions>=4.7.0 in /opt/anaconda3/lib/python3.11/site-packages (from bleak) (4.15.0)
+Requirement already satisfied: pyobjc-core>=10.3 in /opt/anaconda3/lib/python3.11/site-packages (from bleak) (12.1)
+Requirement already satisfied: pyobjc-framework-corebluetooth>=10.3 in /opt/anaconda3/lib/python3.11/site-packages (from bleak) (12.1)
+Requirement already satisfied: pyobjc-framework-libdispatch>=10.3 in /opt/anaconda3/lib/python3.11/site-packages (from bleak) (12.1)
+Requirement already satisfied: pyobjc-framework-Cocoa>=12.1 in /opt/anaconda3/lib/python3.11/site-packages (from pyobjc-framework-corebluetooth>=10.3->bleak) (12.1)
+(base) yutongwu@dhcp-10-31-137-221 ~ % cd ~/Desktop
+nano scan_test.py
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 scan_test.py
+Scanning for 10 seconds...
+  (no name) — C600E2CF-AFC6-47A3-6BF0-2EBBDFFC8B66
+  (no name) — 2A41B52A-CF72-637C-C06B-A414FB9C233B
+  (no name) — 3ED57C67-5B2A-75DF-867B-42B6D8102E02
+  Seos — 2C489B10-5346-4D25-364E-9D4B98C1C404
+  (no name) — FB72CA3A-DBAA-9B7E-51BF-754A55533C3C
+  (no name) — D8AF7355-906E-00B9-0C67-E40136EF2ED4
+  (no name) — F49BD7FE-1ABF-7545-EA9B-54B31683E73F
+  Seos — 0E360876-5907-BA64-2BB3-B9EA7E7E22CF
+  (no name) — B675029E-F4A8-B9E7-D2D5-9E4A4420DBFB
+  (no name) — 8E9446EC-FFCF-31E4-2B60-6A970D73EEFE
+  (no name) — D0A00CC1-D2F4-DE49-3F4E-F7D5DD6B2270
+  (no name) — 615A8A17-0FCB-B9B3-1441-7D02655195B0
+  (no name) — F8D822EC-AB97-454A-1201-A451EE301305
+  (no name) — 754CE41D-A23E-9D71-2EC9-16886E972917
+  (no name) — 9FB7ECE3-44F8-6416-9E12-E88DB0708C19
+  (no name) — 41209E85-FD77-8A7E-98A2-44F8663C83F6
+  (no name) — 44095B4C-0928-E41C-34B9-7D4ABEB01B83
+  (no name) — F8A863D9-FC5F-ED46-54B1-C1673C78CF99
+  (no name) — BE26DF39-FEF4-7E32-4995-BE6F4409E0C1
+  (no name) — C904FB06-2F77-E44F-1A12-91C486465A30
+  (no name) — FED653A6-4E37-DC24-18A6-A0604A8EA994
+  (no name) — 1E6123D7-EDA8-440D-7B01-5499D1230ECA
+  (no name) — C5BB2308-13A8-7BFB-2319-F1D68D3D30E0
+  Seos — EDE9FCAE-EE22-996A-97BE-1ACAA202631D
+  (no name) — D4175967-747A-97E2-57BC-2B650B51E139
+  (no name) — 1CDD3D7E-D747-0607-EB02-206A6F77381F
+  (no name) — 75F9E741-5298-A0F4-EF45-00381173C2E6
+  (no name) — CAD736DF-2BCC-5A12-F3D9-2D094A1B1CFB
+  (no name) — 4D402C19-4197-CC50-1DCB-132AA6AF3F30
+  (no name) — F79EC925-FFD6-1937-231A-3D1A0D9027B5
+  (no name) — EC0E3333-9D31-F2D5-FBE7-F87E92DBE699
+  Seos — 38A89B72-765B-CBA2-889E-8A916872013D
+  (no name) — 13A551CE-0B1C-DF31-C834-138C3843BF74
+  (no name) — A73A89D6-2BD7-F922-6DEF-98BDD4429540
+  Seos — 658147AD-9997-38EF-3348-669E2AB4C3BB
+  (no name) — 8B5749D7-BA1E-56B5-2324-B673EAEF90A9
+  (no name) — F8E4C561-9541-8363-045F-E7A0A5484DB9
+  (no name) — 6F4A6521-A6B5-28BE-2D95-FC31E5A1749C
+  (no name) — 83649965-B5E1-664D-3DF7-A22B36B8F81B
+  (no name) — AA8031B4-AB52-0810-D087-99EA12F5B2DE
+  (no name) — DFA80509-01D0-9FBB-FB3C-BE886898147E
+  (no name) — A70FA2EE-87A0-1762-A1EF-9BBA56A82D8B
+  (no name) — 3B9A8661-CEBE-C0DE-D955-8801066FAF0F
+  (no name) — B1C45082-357A-FB2D-1BF2-F6780553FA5F
+  (no name) — 7C597253-6D7B-8A3C-97D8-7CE5AAC7D7D5
+  Yutong’s iPad  — 6800D5FE-0172-BDEC-E02F-B57428B415EF
+  (no name) — 8FCE44D9-F8CD-657D-3E16-C554685919E3
+  (no name) — 420FFD20-3727-4067-9EAA-C37053231F0C
+  (no name) — 4E5ED016-0E28-1354-5E3A-52FF5F1E3493
+  (no name) — 4433AD71-A5B9-7E84-A1D2-53E9E694F23B
+  (no name) — 8C3BFBBA-A6BF-9BA8-665E-47802DD4FCAA
+  (no name) — 005DF22F-A00F-53B1-8E61-6F925DA50A50
+  LE-POB Bose — E91151B6-333C-F340-4815-58ECD1F6AF96
+  (no name) — DC344CFD-F324-BED5-4FA3-CBFEEF82B8BC
+  (no name) — 12CC1561-7EE5-2C12-DB1B-8C1722538590
+  (no name) — EB734ECE-EB8A-FD2A-2ADD-73149565F641
+  JBL Tune 520BT-LE — 889B7CAC-C9C7-349F-73E0-57BAB3A5AD3E
+  Core400s — 2ACA41E6-973A-BBA2-DE23-FB6AB41623B5
+  (no name) — 7AFD4B99-3893-84F8-D135-E61C362C8F82
+  (no name) — 7449B429-E64C-CAD0-23E8-2FDDB28A4D3C
+  (no name) — 4EAA3AEA-D044-0A7A-E81B-3BCEDBED2433
+  (no name) — F449ACE6-8258-2F44-5A73-D8F9A71552B2
+  (no name) — DBD2AB46-A83B-E1D2-B45A-972936D49042
+  (no name) — 113264ED-A357-D1B6-DA1F-43ECFBF58648
+  (no name) — EFE108F1-CB42-76F6-EF62-4235888AC00E
+  (no name) — C2E15AEF-5E7E-9075-C293-8FEE38D4B8A1
+  嗨 — A0621CCE-B000-1E99-EC93-7B34BD03C10F
+  (no name) — 35DE003F-D5F7-9288-EB84-37957763AEB8
+  (no name) — 1AF7BFBD-3A30-A420-06E5-6453AAF645D8
+  (no name) — 47DEA5B1-6A02-D208-BB30-5467C19AB89B
+  (no name) — 7BEEFFD7-B9EC-EA92-87AA-C9E8CAB35D1C
+  (no name) — 0327F282-270C-C99C-3DD4-CAAAE9F60480
+  (no name) — 0D065E0B-0C6A-455D-E85C-5D7AE2716AD0
+  (no name) — AF9EC537-DD73-C657-E35A-A003F0F15C3E
+  (no name) — 208D8F82-EFE7-7708-71AF-57360B9113EA
+  (no name) — C06F5141-2C42-F07A-5EB5-F49A30C793DF
+  Seos — 8813F016-BD66-9E59-5C62-B390A11CEC99
+  (no name) — BF7BE129-895F-C726-31BD-63CDE23F5E81
+  MOMENTUM 4 — 183C7CA0-8E7B-F967-93F5-97A7C3AA45DE
+  (no name) — 43A26E0D-7F8B-0E23-741D-FF96DE3A3ECF
+  (no name) — 9D6C87BA-A48A-528F-60F4-7563CBE24DE9
+  (no name) — 84B10D0C-0CEE-C85E-582A-4D641D70758E
+  (no name) — 0171182A-D5F1-E043-5225-CC9A30B4FDE7
+  (no name) — 93EE8DB0-3C28-0800-042B-8586331091C3
+  (no name) — 8E055746-C91B-EF1B-094A-5FE818BD54FA
+  (no name) — B833179A-ADE6-FCED-B8C6-4FA5B9163010
+  (no name) — 21BFC4BC-BA1F-697B-E640-AAA7B2907734
+  (no name) — 7768881D-8130-69C7-01E3-CCDF741B8EA3
+  (no name) — E17801BF-8C3A-1E35-DBFD-0A671A46857E
+  (no name) — 1560B8FD-4790-01F0-59C5-BE19F7DF5DCE
+  (no name) — FE98504C-1124-A799-E629-8AD4AB0409E1
+  (no name) — 40D04090-429C-8939-8538-6E7163CBE448
+  (no name) — 0C20AEEE-D793-C677-F5A8-946EE8C63766
+  (no name) — FAF71DC6-03D3-D068-2801-1417C48EF61C
+  (no name) — 232C2955-9E8C-7D56-1536-0AFB3FCFD544
+  (no name) — 9A91C758-CCB0-7EE9-544C-F6D3560FA3D0
+  (no name) — A4FCF463-6713-1015-1A99-C36CBD47B057
+  (no name) — B83AAC04-FD02-776C-DE53-70019A144D8D
+  (no name) — 56B74B9F-1083-CC80-243B-2023CFF36EFC
+  (no name) — 9325E4F8-D014-43EF-88E5-DD7F7B787876
+  (no name) — 60C08DCA-3818-0B0D-69E3-856E2CA1322D
+  (no name) — 5E75541D-C8DB-0E8D-E614-F3B6B93FD8E4
+  (no name) — 01C206BF-7953-393F-0E91-D029CB79E07C
+  (no name) — 90E1AF40-FF0F-172D-75F2-641820FCCF05
+  (no name) — 07B53572-3EA7-169D-16A4-4AAE3277B88A
+  (no name) — EA0D6D71-BADD-CDF5-C829-3EA064D21CDD
+  (no name) — 65561838-0220-A6C5-362A-C5C4DA6218C5
+  (no name) — 5FBD172A-822D-734F-110A-A65D7A5DF2C4
+  (no name) — 096BF9BE-9084-F253-8E25-540EFAD23A16
+  (no name) — CABFE0E9-75A2-4C11-B561-49BB5843A602
+  (no name) — 0B8C80A0-F7D4-ACDD-7B92-63F0DD5A54FF
+  (no name) — AE484A8E-8C1D-7719-371D-C33C910247B1
+  (no name) — 98F974F5-C0F8-0805-A06C-579309B4FA36
+  (no name) — 3566E70C-3973-5B3E-177A-39AA8A19D1EF
+  (no name) — 23488498-5325-9EC2-7000-5FD672FCAB25
+  (no name) — 4733C1B0-884A-A091-2442-F50D475BF549
+  (no name) — D52AAD3F-5CF4-587D-5E33-4B7B0DE40F7E
+  (no name) — C69ECA49-F56A-2D42-0B20-5DDAA15422D2
+  (no name) — 37124B7C-64D0-3610-9970-D9F7BDCF9146
+  (no name) — 726A4D02-E3C5-DF60-82A9-05DEC711B0FC
+  (no name) — 991482A8-B2B8-04CF-F2BC-E8AB969856EE
+  (no name) — 0E5E9B90-D807-9033-0862-C8CDC59A3EF1
+  (no name) — 7CB8A554-5852-0D39-0822-11908BD8259B
+  (no name) — 6D683DF3-26E2-3F5F-CECD-317CFD7E46BE
+(base) yutongwu@dhcp-10-31-137-221 Desktop % nano scan_test.py
+(base) yutongwu@dhcp-10-31-137-221 Desktop % rm scan_test.py
+(base) yutongwu@dhcp-10-31-137-221 Desktop % >....                              
+        marker = " *** POLAR/HR ***" if is_polar else ""
+        display_name = name if name else "(no name)"
+        print(f"  RSSI={rssi:4d} | {display_name:25s} | {address[:8]}...{marker}")
+
+        if is_polar:
+            polar_found.append((address, device, adv))
+
+    print(f"\n{'='*60}")
+    if polar_found:
+        print(f"Found {len(polar_found)} Polar/HR device(s):")
+        for addr, dev, adv in polar_found:
+            print(f"   Name: {dev.name or adv.local_name}")
+            print(f"   Address: {addr}")
+            print(f"   Services: {adv.service_uuids}")
+    else:
+        print("No Polar H10 detected.")
+        print("  - Is the strap WORN with WET electrodes?")
+        print("  - Is your PHONE disconnected from H10?")
+        print("  - Try removing the H10 pod from strap, then snap it back on")
+
+asyncio.run(scan())
+EOF
+(base) yutongwu@dhcp-10-31-137-221 Desktop % cat scan_test.py
+import asyncio
+from bleak import BleakScanner
+
+async def scan():
+    print("Scanning for 15 seconds — keep H10 worn with WET electrodes...")
+    devices_and_adv = await BleakScanner.discover(
+        timeout=15.0, return_adv=True
+    )
+    
+    print(f"\nFound {len(devices_and_adv)} BLE devices:\n")
+    
+    polar_found = []
+    for address, (device, adv) in devices_and_adv.items():
+        name = device.name or adv.local_name or ""
+        manuf = adv.manufacturer_data
+        services = adv.service_uuids
+        rssi = adv.rssi
+        
+        is_polar = (
+            "Polar" in name or 
+            107 in manuf or
+            any("180d" in s.lower() for s in services)
+        )
+        
+        marker = " *** POLAR/HR ***" if is_polar else ""
+        display_name = name if name else "(no name)"
+        print(f"  RSSI={rssi:4d} | {display_name:25s} | {address[:8]}...{marker}")
+        
+        if is_polar:
+            polar_found.append((address, device, adv))
+    
+    print(f"\n{'='*60}")
+    if polar_found:
+        print(f"Found {len(polar_found)} Polar/HR device(s):")
+        for addr, dev, adv in polar_found:
+            print(f"   Name: {dev.name or adv.local_name}")
+            print(f"   Address: {addr}")
+            print(f"   Services: {adv.service_uuids}")
+    else:
+        print("No Polar H10 detected.")
+        print("  - Is the strap WORN with WET electrodes?")
+        print("  - Is your PHONE disconnected from H10?")
+        print("  - Try removing the H10 pod from strap, then snap it back on")
+
+asyncio.run(scan())
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 scan_test.py
+Scanning for 15 seconds — keep H10 worn with WET electrodes...
+
+Found 150 BLE devices:
+
+  RSSI= -88 | LE_WH-1000XM4             | 04A95BF0...
+  RSSI= -73 | (no name)                 | 133C2160...
+  RSSI= -60 | (no name)                 | 65561838...
+  RSSI= -82 | Seos                      | 2C489B10...
+  RSSI= -89 | (no name)                 | 029FEA7F...
+  RSSI= -84 | (no name)                 | 43A26E0D...
+  RSSI= -73 | (no name)                 | 486264C2...
+  RSSI= -79 | (no name)                 | 2A41B52A...
+  RSSI= -43 | Yutong’s iPad             | 6800D5FE...
+  RSSI= -75 | (no name)                 | E17801BF...
+  RSSI= -85 | (no name)                 | 2E29332A...
+  RSSI= -80 | (no name)                 | 5BD5D3EF...
+  RSSI= -54 | (no name)                 | C600E2CF...
+  RSSI= -77 | (no name)                 | 13A551CE...
+  RSSI= -94 | (no name)                 | 9B77746B...
+  RSSI= -76 | (no name)                 | 1CDD3D7E...
+  RSSI= -80 | (no name)                 | B675029E...
+  RSSI= -75 | MOMENTUM 4                | 183C7CA0...
+  RSSI= -81 | Seos                      | 658147AD...
+  RSSI= -71 | (no name)                 | 6FAA4630...
+  RSSI= -77 | (no name)                 | F49BD7FE...
+  RSSI= -75 | (no name)                 | 992B7584...
+  RSSI= -74 | (no name)                 | C904FB06...
+  RSSI= -81 | (no name)                 | 8DD67249...
+  RSSI= -89 | (no name)                 | C7B3B32D...
+  RSSI= -77 | (no name)                 | 12B1362C...
+  RSSI= -59 | (no name)                 | 0171182A...
+  RSSI= -78 | (no name)                 | 113264ED...
+  RSSI= -73 | (no name)                 | 1E1E3133...
+  RSSI= -87 | (no name)                 | 36D17037...
+  RSSI= -79 | (no name)                 | 0C20AEEE...
+  RSSI= -73 | (no name)                 | FA2001C3...
+  RSSI= -69 | HUSAMS_LAPTOP             | 56B74B9F...
+  RSSI= -71 | (no name)                 | 8FCE44D9...
+  RSSI= -69 | (no name)                 | C4F96B69...
+  RSSI= -72 | (no name)                 | 31127E7E...
+  RSSI= -88 | (no name)                 | 21BFC4BC...
+  RSSI= -77 | Seos                      | 0E360876...
+  RSSI= -87 | (no name)                 | 5FBD172A...
+  RSSI= -78 | (no name)                 | 9A91C758...
+  RSSI= -75 | (no name)                 | F8E4C561...
+  RSSI= -71 | (no name)                 | BE26DF39...
+  RSSI= -58 | (no name)                 | C5BB2308...
+  RSSI= -83 | (no name)                 | 8E9446EC...
+  RSSI= -79 | (no name)                 | FED653A6...
+  RSSI= -88 | Seos                      | EDE9FCAE...
+  RSSI= -87 | (no name)                 | 84B10D0C...
+  RSSI= -79 | (no name)                 | 4EAA3AEA...
+  RSSI= -76 | (no name)                 | 9D6C87BA...
+  RSSI= -89 | (no name)                 | 5DF35DE6...
+  RSSI= -71 | (no name)                 | 208D8F82...
+  RSSI= -86 | (no name)                 | 1AF7BFBD...
+  RSSI= -79 | (no name)                 | 8136421B...
+  RSSI= -88 | Seos                      | 38A89B72...
+  RSSI= -87 | (no name)                 | FF986562...
+  RSSI= -85 | (no name)                 | DBD2AB46...
+  RSSI= -88 | (no name)                 | 0270CDC0...
+  RSSI= -88 | (no name)                 | C8366876...
+  RSSI= -83 | (no name)                 | 07B53572...
+  RSSI= -84 | JBL Tune 520BT-LE         | 889B7CAC...
+  RSSI= -77 | (no name)                 | FBC523FA...
+  RSSI= -76 | (no name)                 | D0A00CC1...
+  RSSI= -83 | (no name)                 | F4AFCE5A...
+  RSSI= -67 | (no name)                 | 7CB8A554...
+  RSSI= -83 | Seos                      | 8813F016...
+  RSSI= -82 | (no name)                 | CAD736DF...
+  RSSI= -65 | (no name)                 | 04C0096E...
+  RSSI= -72 | (no name)                 | 41209E85...
+  RSSI= -67 | (no name)                 | 057FCB7E...
+  RSSI= -74 | (no name)                 | F8A863D9...
+  RSSI= 127 | (no name)                 | 3ED57C67...
+  RSSI= -79 | (no name)                 | 8E1E1071...
+  RSSI= -90 | (no name)                 | 25F12D57...
+  RSSI= -70 | (no name)                 | 083EA092...
+  RSSI= -68 | (no name)                 | ABC83844...
+  RSSI= -89 | (no name)                 | FB72CA3A...
+  RSSI= -84 | (no name)                 | F88E7B41...
+  RSSI= -77 | (no name)                 | 4D402C19...
+  RSSI= -79 | (no name)                 | 007C0278...
+  RSSI= -84 | (no name)                 | 8C3BFBBA...
+  RSSI= -89 | (no name)                 | 3566E70C...
+  RSSI= -88 | (no name)                 | 37124B7C...
+  RSSI= -80 | (no name)                 | 0A8ED1E8...
+  RSSI= -92 | (no name)                 | 3C774B3A...
+  RSSI= -76 | (no name)                 | D4CBC095...
+  RSSI= -78 | (no name)                 | 185B8ADA...
+  RSSI= -86 | Seos                      | 44095B4C...
+  RSSI= -74 | (no name)                 | 22C00504...
+  RSSI= -94 | (no name)                 | 8EC68815...
+  RSSI= -74 | (no name)                 | 420FFD20...
+  RSSI= -73 | (no name)                 | B833179A...
+  RSSI= -72 | (no name)                 | 4E5ED016...
+  RSSI= -86 | (no name)                 | A06E3183...
+  RSSI= -76 | (no name)                 | 40D04090...
+  RSSI= -79 | (no name)                 | 4433AD71...
+  RSSI= -80 | (no name)                 | 076C3E05...
+  RSSI= -72 | (no name)                 | 9FB7ECE3...
+  RSSI= -67 | (no name)                 | 78CF87AF...
+  RSSI= -85 | (no name)                 | 75F9E741...
+  RSSI= -90 | Seos                      | A4FCF463...
+  RSSI= -78 | Core400s                  | 2ACA41E6...
+  RSSI= -86 | (no name)                 | 7A027E79...
+  RSSI= -90 | (no name)                 | 6E3B848D...
+  RSSI= -83 | (no name)                 | 788C71C3...
+  RSSI= -54 | 嗨                         | A0621CCE...
+  RSSI= -83 | (no name)                 | FE98504C...
+  RSSI= -90 | (no name)                 | 4F2DBDF9...
+  RSSI= -79 | (no name)                 | 2CFAA296...
+  RSSI= -82 | (no name)                 | 2FCA0465...
+  RSSI= -92 | (no name)                 | C50186BF...
+  RSSI= -90 | (no name)                 | D7D4C76E...
+  RSSI= -74 | (no name)                 | 7A714B37...
+  RSSI= -78 | (no name)                 | D52AAD3F...
+  RSSI= -81 | (no name)                 | 90E1AF40...
+  RSSI= -83 | (no name)                 | 9B5DC520...
+  RSSI= -88 | (no name)                 | 5805037C...
+  RSSI= -84 | (no name)                 | 62727214...
+  RSSI= -79 | (no name)                 | EEDA5B4B...
+  RSSI= -61 | (no name)                 | 797FC3D6...
+  RSSI= -72 | (no name)                 | E392540A...
+  RSSI= -74 | (no name)                 | C58AD642...
+  RSSI= -73 | (no name)                 | F79EC925...
+  RSSI= -95 | (no name)                 | 861F9E01...
+  RSSI= -82 | (no name)                 | AF9EC537...
+  RSSI= -71 | (no name)                 | AA8031B4...
+  RSSI= -84 | (no name)                 | 2B8B1FF0...
+  RSSI= -76 | (no name)                 | CC67EBFE...
+  RSSI= -82 | (no name)                 | DFA80509...
+  RSSI= -42 | Polar H10 154B1732        | CD715D46... *** POLAR/HR ***
+  RSSI= -87 | (no name)                 | 47DEA5B1...
+  RSSI= -81 | (no name)                 | CF940B56...
+  RSSI= -75 | (no name)                 | 726A4D02...
+  RSSI= -87 | (no name)                 | 710AF3F0...
+  RSSI= -73 | (no name)                 | 2A445A9B...
+  RSSI= -79 | (no name)                 | 1B7F03F2...
+  RSSI= -73 | (no name)                 | 52F8E39D...
+  RSSI= -71 | (no name)                 | 6DA1A212...
+  RSSI= -83 | (no name)                 | BC75E2A8...
+  RSSI= -83 | (no name)                 | 23488498...
+  RSSI= -85 | (no name)                 | D4175967...
+  RSSI= -49 | (no name)                 | 7A142FB7...
+  RSSI= -73 | (no name)                 | 5FA89635...
+  RSSI= -92 | (no name)                 | 70A1F9CC...
+  RSSI= -77 | (no name)                 | 9C51A8A2...
+  RSSI= -77 | (no name)                 | 615A8A17...
+  RSSI= -82 | (no name)                 | 79BB4501...
+  RSSI= -45 | (no name)                 | B3BAB50C...
+  RSSI= -90 | (no name)                 | 4F634D65...
+  RSSI= -81 | (no name)                 | 3BDFC0C6...
+  RSSI= -86 | (no name)                 | F868F2F5...
+
+============================================================
+Found 1 Polar/HR device(s):
+   Name: Polar H10 154B1732
+   Address: CD715D46-02BA-83E7-E348-873DAFFF90BC
+   Services: ['0000180d-0000-1000-8000-00805f9b34fb', '0000feee-0000-1000-8000-00805f9b34fb']
+(base) yutongwu@dhcp-10-31-137-221 Desktop % >....                              
+            polar_found.append((address, device, adv))
+
+    print("="*60)
+    if polar_found:
+        print(f"SUCCESS! Found {len(polar_found)} Polar/HR device(s):\n")
+        for addr, dev, adv in polar_found:
+            print(f"  Name:    {dev.name or adv.local_name or '(no name)'}")
+            print(f"  Address: {addr}")
+            print(f"  RSSI:    {adv.rssi} dBm")
+            print()
+    else:
+        print("No Polar device found.")
+        print(f"(Scanned {len(devices_and_adv)} other devices)")
+        print("\nChecklist:")
+        print("  [ ] Strap is on your body")
+        print("  [ ] Electrodes are visibly wet")
+        print("  [ ] Pod is firmly snapped on strap")
+        print("  [ ] Phone Bluetooth is OFF")
+        print("  [ ] H10 battery is good (replace if old)")
+
+asyncio.run(scan())
+EOF
+echo "File created. Run with: python3 polar_scan.py"
+File created. Run with: python3 polar_scan.py
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_scan.py
+Scanning for 15 seconds...
+Make sure: strap WORN, electrodes WET, phone Bluetooth OFF
+
+============================================================
+SUCCESS! Found 1 Polar/HR device(s):
+
+  Name:    Polar H10 154B1732
+  Address: CD715D46-02BA-83E7-E348-873DAFFF90BC
+  RSSI:    -58 dBm
+
+(base) yutongwu@dhcp-10-31-137-221 Desktop % >....                              
+        print(f"Connected to {device.name}")
+        print(f"Logging to {OUTPUT_CSV}")
+        print("Press Ctrl+C to stop.\n")
+
+        await client.start_notify(HR_MEASUREMENT_UUID, hr_handler)
+        try:
+            while True:
+                await asyncio.sleep(1.0)
+        except asyncio.CancelledError:
+            pass
+        finally:
+            await client.stop_notify(HR_MEASUREMENT_UUID)
+            csv_file.close()
+            print("\nDisconnected. Data saved to polar_h10_log.csv")
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nStopped.")
+EOF
+echo "Script ready. Run with: python3 polar_h10_ibi.py"
+Script ready. Run with: python3 polar_h10_ibi.py
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_ibi.py
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+Connected to Polar H10 154B1732
+Logging to polar_h10_log.csv
+Press Ctrl+C to stop.
+
+[t=  5.43s] HR=92 BPM | IBI=  606.4 ms
+[t=  5.43s] HR=92 BPM | IBI=  590.8 ms
+[t=  5.43s] HR=93 BPM | IBI=  621.1 ms
+[t=  5.43s] HR=94 BPM | IBI=  668.9 ms
+[t=  5.43s] HR=94 BPM | IBI=  678.7 ms
+[t=  6.41s] HR=93 BPM | IBI=  697.3 ms
+[t=  7.40s] HR=92 BPM | IBI=  394.5 ms
+[t=  8.39s] HR=91 BPM | IBI=  690.4 ms
+[t=  8.39s] HR=91 BPM | IBI=  679.7 ms
+[t=  9.41s] HR=90 BPM | IBI=  648.4 ms
+[t=  9.41s] HR=90 BPM | IBI=  613.3 ms
+[t= 10.40s] HR=91 BPM | IBI=  591.8 ms
+[t= 11.39s] HR=94 BPM | IBI=  599.6 ms
+[t= 11.39s] HR=94 BPM | IBI=  605.5 ms
+[t= 12.41s] HR=95 BPM | IBI=  626.0 ms
+[t= 13.40s] HR=95 BPM | IBI=  648.4 ms
+[t= 13.40s] HR=95 BPM | IBI=  642.6 ms
+[t= 14.39s] HR=95 BPM | IBI=  637.7 ms
+[t= 14.39s] HR=95 BPM | IBI=  611.3 ms
+[t= 15.41s] HR=96 BPM | IBI=  593.8 ms
+[t= 15.41s] HR=96 BPM | IBI=  576.2 ms
+[t= 16.40s] HR=98 BPM | IBI=  575.2 ms
+[t= 16.40s] HR=98 BPM | IBI=  585.0 ms
+[t= 17.42s] HR=99 BPM | IBI=  606.4 ms
+[t= 18.41s] HR=100 BPM | IBI=  418.9 ms
+[t= 18.41s] HR=100 BPM | IBI=  682.6 ms
+[t= 19.40s] HR=101 BPM | IBI=  640.6 ms
+[t= 20.39s] HR=99 BPM | IBI=  633.8 ms
+[t= 20.39s] HR=99 BPM | IBI=  637.7 ms
+[t= 21.41s] HR=98 BPM | IBI=  606.4 ms
+[t= 21.41s] HR=98 BPM | IBI=  579.1 ms
+[t= 22.40s] HR=98 BPM | IBI=  563.5 ms
+[t= 23.39s] HR=101 BPM | IBI=  559.6 ms
+[t= 23.39s] HR=101 BPM | IBI=  565.4 ms
+[t= 24.41s] HR=103 BPM | IBI=  592.8 ms
+[t= 24.41s] HR=103 BPM | IBI=  637.7 ms
+[t= 25.40s] HR=102 BPM | IBI=  642.6 ms
+[t= 26.39s] HR=99 BPM | IBI=  646.5 ms
+[t= 26.39s] HR=99 BPM | IBI=  610.4 ms
+[t= 27.41s] HR=98 BPM | IBI=  590.8 ms
+[t= 27.41s] HR=98 BPM | IBI=  582.0 ms
+[t= 28.40s] HR=99 BPM | IBI=  581.1 ms
+[t= 29.39s] HR=100 BPM | IBI=  595.7 ms
+[t= 29.39s] HR=100 BPM | IBI=  637.7 ms
+[t= 30.41s] HR=100 BPM | IBI=  649.4 ms
+[t= 31.56s] HR=97 BPM | IBI=  669.9 ms
+[t= 31.56s] HR=97 BPM | IBI=  654.3 ms
+[t= 32.56s] HR=95 BPM | IBI=  627.0 ms
+[t= 32.56s] HR=95 BPM | IBI=  592.8 ms
+[t= 33.56s] HR=97 BPM | IBI=  565.4 ms
+[t= 33.56s] HR=97 BPM | IBI=  551.8 ms
+[t= 34.55s] HR=99 BPM | IBI=  544.9 ms
+[t= 35.55s] HR=103 BPM | IBI=  559.6 ms
+[t= 35.55s] HR=103 BPM | IBI=  629.9 ms
+[t= 36.55s] HR=102 BPM | IBI=  675.8 ms
+[t= 37.55s] HR=100 BPM | IBI=  698.2 ms
+[t= 39.04s] HR=95 BPM | IBI=  701.2 ms
+[t= 39.04s] HR=95 BPM | IBI=  696.3 ms
+[t= 39.54s] HR=93 BPM | IBI=  654.3 ms
+[t= 39.54s] HR=93 BPM | IBI=  617.2 ms
+[t= 42.04s] HR=93 BPM | IBI=  593.8 ms
+[t= 42.04s] HR=95 BPM | IBI=  591.8 ms
+[t= 42.04s] HR=95 BPM | IBI=  630.9 ms
+[t= 42.54s] HR=96 BPM | IBI=  670.9 ms
+[t= 43.53s] HR=94 BPM | IBI=  667.0 ms
+[t= 43.53s] HR=94 BPM | IBI=  677.7 ms
+[t= 44.53s] HR=93 BPM | IBI=  665.0 ms
+[t= 44.53s] HR=93 BPM | IBI=  651.4 ms
+[t= 45.53s] HR=92 BPM | IBI=  623.0 ms
+[t= 46.53s] HR=94 BPM | IBI=  589.8 ms
+[t= 46.53s] HR=94 BPM | IBI=  574.2 ms
+[t= 47.52s] HR=97 BPM | IBI=  574.2 ms
+[t= 47.52s] HR=97 BPM | IBI=  585.0 ms
+^C
+Disconnected. Data saved to polar_h10_log.csv
+(base) yutongwu@dhcp-10-31-137-221 Desktop % ls ~/Downloads/polar_h10_60s_synced.py
+ls: /Users/yutongwu/Downloads/polar_h10_60s_synced.py: No such file or directory
+(base) yutongwu@dhcp-10-31-137-221 Desktop % cd ~/Desktop && cat > polar_h10_60s_synced.py << 'PYEOF'
+cmdand heredoc> >....                                                                                             
+        print("Both this Mac and mmWave computer should be NTP-synced.")
+        print("="*60)
+        await wait_for_enter("\n>>> Press ENTER to start... ")
+
+        recording = True
+        t0_perf = time.perf_counter()
+        t0_epoch = now_epoch()
+        start_iso = epoch_to_iso_local(t0_epoch)
+
+        print(f"\n*** RECORDING STARTED ***")
+        print(f"  Local ISO:  {start_iso}")
+        print(f"  Unix epoch: {t0_epoch:.3f}")
+        print(f"  Duration:   {RECORDING_DURATION_S:.0f} seconds\n")
+
+        while True:
+            elapsed = time.perf_counter() - t0_perf
+            remaining = RECORDING_DURATION_S - elapsed
+            if remaining <= 0:
+                break
+            await asyncio.sleep(min(remaining, 0.5))
+
+        recording = False
+        end_epoch = now_epoch()
+        end_iso = epoch_to_iso_local(end_epoch)
+        print(f"\n=== RECORDING COMPLETE ===")
+        print(f"  Local ISO:  {end_iso}")
+        print(f"  Unix epoch: {end_epoch:.3f}\n")
+        await client.stop_notify(HR_MEASUREMENT_UUID)
+
+    csv_file.close()
+
+    with open(meta_path, "w") as f:
+        f.write(f"trial_label: {trial_label or '(none)'}\n")
+        f.write(f"device: {device.name}\n")
+        f.write(f"start_iso: {start_iso}\n")
+        f.write(f"end_iso:   {end_iso}\n")
+        f.write(f"start_epoch: {t0_epoch:.3f}\n")
+        f.write(f"end_epoch:   {end_epoch:.3f}\n")
+        f.write(f"duration_s: {RECORDING_DURATION_S}\n")
+        f.write(f"csv_file:   {csv_path.name}\n")
+
+    stats = compute_hrv_stats(all_rr)
+    print(f"CSV saved:  {csv_path}")
+    print(f"Meta saved: {meta_path}")
+    print(f"\n--- Summary ---")
+    if stats:
+        print(f"  Beats recorded:  {stats['n_beats']}")
+        print(f"  Mean HR:         {stats['mean_hr_bpm']:.1f} BPM")
+        print(f"  Mean IBI:        {stats['mean_rr_ms']:.1f} ms")
+        print(f"  IBI range:       {stats['min_rr_ms']:.1f} - {stats['max_rr_ms']:.1f} ms")
+        print(f"  SDNN:            {stats['sdnn_ms']:.1f} ms")
+        print(f"  RMSSD:           {stats['rmssd_ms']:.1f} ms")
+        print(f"  pNN50:           {stats['pnn50_pct']:.1f} %")
+    print(f"\n  Recording: {start_iso}  ->  {end_iso}")
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nCanceled.")
+PYEOF
+(base) yutongwu@dhcp-10-31-137-221 Desktop % ls polar_h10_60s_synced.py
+wc -l polar_h10_60s_synced.py
+polar_h10_60s_synced.py
+     228 polar_h10_60s_synced.py
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): Trial label (e.g. subject01_rest, or blank): [press Enter]
+Scanning for Polar H10...
+Polar H10 not found. Check strap, electrodes, phone Bluetooth.
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+
+Connected to Polar H10 154B1732
+
+Stabilizing connection...
+H10 streaming OK (2 packets)
+
+============================================================
+READY. Press ENTER to start the 60-second recording.
+Both this Mac and mmWave computer should be NTP-synced.
+============================================================
+
+>>> Press ENTER to start...     
+
+*** RECORDING STARTED ***
+  Local ISO:  2026-05-05T14:07:36.708-04:00
+  Unix epoch: 1778004456.708
+  Duration:   60 seconds
+
+[t= 0.97s] HR=117 BPM | IBI=  498.0 ms
+[t= 1.98s] HR=118 BPM | IBI=  504.9 ms
+[t= 1.98s] HR=118 BPM | IBI=  520.5 ms
+[t= 2.96s] HR=117 BPM | IBI=  532.2 ms
+[t= 2.96s] HR=117 BPM | IBI=  517.6 ms
+[t= 3.96s] HR=116 BPM | IBI=  508.8 ms
+[t= 3.96s] HR=116 BPM | IBI=  499.0 ms
+[t= 4.96s] HR=117 BPM | IBI=  509.8 ms
+[t= 4.96s] HR=117 BPM | IBI=  526.4 ms
+[t= 5.96s] HR=116 BPM | IBI=  559.6 ms
+[t= 5.96s] HR=116 BPM | IBI=  595.7 ms
+[t= 6.95s] HR=113 BPM | IBI=  591.8 ms
+[t= 7.95s] HR=109 BPM | IBI=  602.5 ms
+[t= 7.95s] HR=109 BPM | IBI=  611.3 ms
+[t= 8.95s] HR=106 BPM | IBI=  585.0 ms
+[t= 8.95s] HR=106 BPM | IBI=  556.6 ms
+[t= 9.95s] HR=106 BPM | IBI=  546.9 ms
+[t= 9.95s] HR=106 BPM | IBI=  548.8 ms
+[t=10.94s] HR=107 BPM | IBI=  588.9 ms
+[t=11.94s] HR=105 BPM | IBI=  606.4 ms
+[t=11.94s] HR=105 BPM | IBI=  622.1 ms
+[t=12.94s] HR=103 BPM | IBI=  607.4 ms
+[t=12.94s] HR=103 BPM | IBI=  558.6 ms
+[t=13.94s] HR=103 BPM | IBI=  557.6 ms
+[t=14.93s] HR=104 BPM | IBI=  566.4 ms
+[t=14.93s] HR=104 BPM | IBI=  586.9 ms
+[t=15.93s] HR=104 BPM | IBI=  589.8 ms
+[t=15.93s] HR=104 BPM | IBI=  595.7 ms
+[t=16.93s] HR=103 BPM | IBI=  566.4 ms
+[t=16.93s] HR=103 BPM | IBI=  571.3 ms
+[t=17.93s] HR=104 BPM | IBI=  579.1 ms
+[t=18.92s] HR=104 BPM | IBI=  572.3 ms
+[t=18.92s] HR=104 BPM | IBI=  545.9 ms
+[t=19.92s] HR=106 BPM | IBI=  539.1 ms
+[t=19.92s] HR=106 BPM | IBI=  545.9 ms
+[t=20.92s] HR=107 BPM | IBI=  554.7 ms
+[t=20.92s] HR=107 BPM | IBI=  569.3 ms
+[t=21.92s] HR=107 BPM | IBI=  613.3 ms
+[t=22.91s] HR=104 BPM | IBI=  630.9 ms
+[t=22.91s] HR=104 BPM | IBI=  613.3 ms
+[t=23.91s] HR=102 BPM | IBI=  574.2 ms
+[t=23.91s] HR=102 BPM | IBI=  592.8 ms
+[t=24.91s] HR=102 BPM | IBI=  582.0 ms
+[t=24.91s] HR=102 BPM | IBI=  585.9 ms
+[t=25.91s] HR=102 BPM | IBI=  563.5 ms
+[t=26.90s] HR=104 BPM | IBI=  552.7 ms
+[t=26.90s] HR=104 BPM | IBI=  567.4 ms
+[t=27.90s] HR=104 BPM | IBI=  585.0 ms
+[t=27.90s] HR=104 BPM | IBI=  592.8 ms
+[t=28.90s] HR=104 BPM | IBI=  572.3 ms
+[t=29.90s] HR=104 BPM | IBI=  581.1 ms
+[t=29.90s] HR=104 BPM | IBI=  618.2 ms
+[t=30.90s] HR=103 BPM | IBI=  645.5 ms
+[t=31.89s] HR=100 BPM | IBI=  612.3 ms
+[t=31.89s] HR=100 BPM | IBI=  615.2 ms
+[t=32.89s] HR=99 BPM | IBI=  644.5 ms
+[t=32.89s] HR=99 BPM | IBI=  628.9 ms
+[t=33.89s] HR=98 BPM | IBI=  585.9 ms
+[t=34.88s] HR=99 BPM | IBI=  584.0 ms
+[t=34.88s] HR=99 BPM | IBI=  589.8 ms
+[t=35.88s] HR=100 BPM | IBI=  618.2 ms
+[t=35.88s] HR=100 BPM | IBI=  564.5 ms
+[t=36.88s] HR=102 BPM | IBI=  539.1 ms
+[t=36.88s] HR=102 BPM | IBI=  541.0 ms
+[t=38.38s] HR=104 BPM | IBI=  569.3 ms
+[t=38.87s] HR=104 BPM | IBI=  612.3 ms
+[t=38.87s] HR=104 BPM | IBI=  666.0 ms
+[t=39.87s] HR=102 BPM | IBI=  688.5 ms
+[t=40.87s] HR=97 BPM | IBI=  705.1 ms
+[t=40.87s] HR=97 BPM | IBI=  702.1 ms
+[t=41.87s] HR=95 BPM | IBI=  648.4 ms
+[t=42.87s] HR=94 BPM | IBI=  642.6 ms
+[t=42.87s] HR=94 BPM | IBI=  640.6 ms
+[t=43.86s] HR=94 BPM | IBI=  643.6 ms
+[t=44.86s] HR=94 BPM | IBI=  638.7 ms
+[t=44.86s] HR=94 BPM | IBI=  636.7 ms
+[t=45.86s] HR=94 BPM | IBI=  616.2 ms
+[t=45.86s] HR=94 BPM | IBI=  585.9 ms
+[t=46.86s] HR=95 BPM | IBI=  582.0 ms
+[t=47.85s] HR=98 BPM | IBI=  583.0 ms
+[t=47.85s] HR=98 BPM | IBI=  596.7 ms
+[t=48.85s] HR=98 BPM | IBI=  616.2 ms
+[t=49.85s] HR=98 BPM | IBI=  634.8 ms
+[t=49.85s] HR=98 BPM | IBI=  656.2 ms
+[t=50.84s] HR=97 BPM | IBI=  668.9 ms
+[t=51.84s] HR=95 BPM | IBI=  679.7 ms
+[t=51.84s] HR=95 BPM | IBI=  663.1 ms
+[t=52.84s] HR=93 BPM | IBI=  650.4 ms
+[t=52.84s] HR=93 BPM | IBI=  643.6 ms
+[t=53.84s] HR=93 BPM | IBI=  634.8 ms
+[t=54.83s] HR=94 BPM | IBI=  607.4 ms
+[t=54.83s] HR=94 BPM | IBI=  582.0 ms
+[t=55.83s] HR=97 BPM | IBI=  567.4 ms
+[t=55.83s] HR=97 BPM | IBI=  567.4 ms
+[t=56.83s] HR=98 BPM | IBI=  598.6 ms
+[t=57.83s] HR=99 BPM | IBI=  659.2 ms
+[t=58.83s] HR=97 BPM | IBI=  699.2 ms
+[t=58.83s] HR=97 BPM | IBI=  724.6 ms
+[t=59.82s] HR=94 BPM | IBI=  744.1 ms
+
+=== RECORDING COMPLETE ===
+  Local ISO:  2026-05-05T14:08:36.709-04:00
+  Unix epoch: 1778004516.710
+
+CSV saved:  recordings/polar_h10_20260505_135947.csv
+Meta saved: recordings/polar_h10_20260505_135947.meta.txt
+
+--- Summary ---
+  Beats recorded:  99
+  Mean HR:         100.5 BPM
+  Mean IBI:        596.9 ms
+  IBI range:       498.0 - 744.1 ms
+  SDNN:            50.1 ms
+  RMSSD:           22.9 ms
+  pNN50:           4.1 %
+
+  Recording: 2026-05-05T14:07:36.708-04:00  ->  2026-05-05T14:08:36.709-04:00
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+
+Connected to Polar H10 154B1732
+
+Stabilizing connection...
+H10 streaming OK (2 packets)
+
+============================================================
+READY. Press ENTER to start the 60-second recording.
+Both this Mac and mmWave computer should be NTP-synced.
+============================================================
+
+>>> Press ENTER to start... 
+
+*** RECORDING STARTED ***
+  Local ISO:  2026-05-05T14:09:42.486-04:00
+  Unix epoch: 1778004582.487
+  Duration:   60 seconds
+
+
+
+
+
+[t= 0.81s] HR=102 BPM | IBI=  549.8 ms
+[t= 0.81s] HR=102 BPM | IBI=  565.4 ms
+
+
+
+
+
+
+
+
+
+
+
+
+[t= 1.83s] HR=103 BPM | IBI=  584.0 ms
+
+[t= 2.82s] HR=103 BPM | IBI=  588.9 ms
+[t= 2.82s] HR=103 BPM | IBI=  624.0 ms
+[t= 3.81s] HR=101 BPM | IBI=  614.3 ms
+[t= 3.81s] HR=101 BPM | IBI=  594.7 ms
+[t= 4.83s] HR=101 BPM | IBI=  593.8 ms
+[t= 5.82s] HR=101 BPM | IBI=  584.0 ms
+[t= 5.82s] HR=101 BPM | IBI=  576.2 ms
+[t= 6.81s] HR=101 BPM | IBI=  613.3 ms
+[t= 6.81s] HR=101 BPM | IBI=  617.2 ms
+[t= 7.83s] HR=101 BPM | IBI=  609.4 ms
+[t= 8.82s] HR=100 BPM | IBI=  625.0 ms
+[t= 8.82s] HR=100 BPM | IBI=  620.1 ms
+[t= 9.81s] HR=99 BPM | IBI=  630.9 ms
+[t=10.80s] HR=98 BPM | IBI=  618.2 ms
+[t=10.80s] HR=98 BPM | IBI=  604.5 ms
+[t=11.82s] HR=98 BPM | IBI=  597.7 ms
+[t=11.82s] HR=98 BPM | IBI=  593.8 ms
+[t=12.81s] HR=99 BPM | IBI=  584.0 ms
+[t=12.81s] HR=99 BPM | IBI=  575.2 ms
+[t=13.80s] HR=100 BPM | IBI=  577.1 ms
+[t=14.82s] HR=101 BPM | IBI=  585.9 ms
+[t=14.82s] HR=101 BPM | IBI=  580.1 ms
+[t=15.81s] HR=102 BPM | IBI=  577.1 ms
+[t=15.81s] HR=102 BPM | IBI=  589.8 ms
+[t=16.86s] HR=102 BPM | IBI=  603.5 ms
+[t=17.85s] HR=101 BPM | IBI=  625.0 ms
+[t=17.85s] HR=101 BPM | IBI=  654.3 ms
+[t=18.81s] HR=100 BPM | IBI=  668.0 ms
+[t=19.83s] HR=96 BPM | IBI=  668.0 ms
+[t=19.83s] HR=96 BPM | IBI=  663.1 ms
+[t=20.83s] HR=95 BPM | IBI=  655.3 ms
+[t=21.83s] HR=94 BPM | IBI=  617.2 ms
+[t=21.83s] HR=94 BPM | IBI=  599.6 ms
+[t=22.82s] HR=96 BPM | IBI=  586.9 ms
+[t=22.82s] HR=96 BPM | IBI=  586.9 ms
+[t=23.82s] HR=98 BPM | IBI=  590.8 ms
+[t=23.82s] HR=98 BPM | IBI=  598.6 ms
+[t=24.82s] HR=99 BPM | IBI=  584.0 ms
+[t=25.82s] HR=100 BPM | IBI=  603.5 ms
+[t=25.82s] HR=100 BPM | IBI=  601.6 ms
+[t=26.82s] HR=100 BPM | IBI=  600.6 ms
+[t=26.82s] HR=100 BPM | IBI=  597.7 ms
+[t=27.81s] HR=100 BPM | IBI=  590.8 ms
+[t=28.81s] HR=101 BPM | IBI=  565.4 ms
+[t=28.81s] HR=101 BPM | IBI=  560.5 ms
+[t=29.81s] HR=103 BPM | IBI=  551.8 ms
+[t=29.81s] HR=103 BPM | IBI=  540.0 ms
+[t=30.81s] HR=106 BPM | IBI=  529.3 ms
+[t=30.81s] HR=106 BPM | IBI=  534.2 ms
+[t=31.80s] HR=108 BPM | IBI=  563.5 ms
+[t=31.80s] HR=108 BPM | IBI=  578.1 ms
+[t=32.80s] HR=107 BPM | IBI=  592.8 ms
+[t=34.30s] HR=106 BPM | IBI=  578.1 ms
+[t=34.30s] HR=106 BPM | IBI=  608.4 ms
+[t=35.30s] HR=105 BPM | IBI=  629.9 ms
+[t=36.29s] HR=101 BPM | IBI=  634.8 ms
+[t=36.29s] HR=101 BPM | IBI=  623.0 ms
+[t=37.29s] HR=100 BPM | IBI=  593.8 ms
+[t=37.29s] HR=100 BPM | IBI=  586.9 ms
+[t=38.29s] HR=100 BPM | IBI=  599.6 ms
+[t=39.29s] HR=100 BPM | IBI=  628.9 ms
+[t=39.29s] HR=100 BPM | IBI=  656.2 ms
+[t=40.28s] HR=99 BPM | IBI=  663.1 ms
+[t=41.28s] HR=96 BPM | IBI=  633.8 ms
+[t=41.28s] HR=96 BPM | IBI=  654.3 ms
+[t=42.28s] HR=96 BPM | IBI=  678.7 ms
+[t=43.27s] HR=93 BPM | IBI=  690.4 ms
+[t=43.27s] HR=93 BPM | IBI=  670.9 ms
+[t=44.27s] HR=93 BPM | IBI=  713.9 ms
+[t=45.77s] HR=92 BPM | IBI=  714.8 ms
+[t=46.27s] HR=89 BPM | IBI=  715.8 ms
+[t=46.27s] HR=89 BPM | IBI=  686.5 ms
+[t=47.26s] HR=89 BPM | IBI=  674.8 ms
+[t=48.26s] HR=89 BPM | IBI=  668.9 ms
+[t=48.26s] HR=89 BPM | IBI=  669.9 ms
+[t=49.26s] HR=89 BPM | IBI=  691.4 ms
+[t=50.26s] HR=89 BPM | IBI=  685.5 ms
+[t=50.26s] HR=89 BPM | IBI=  679.7 ms
+[t=51.26s] HR=89 BPM | IBI=  648.4 ms
+[t=51.26s] HR=89 BPM | IBI=  607.4 ms
+[t=52.25s] HR=90 BPM | IBI=  593.8 ms
+[t=53.25s] HR=93 BPM | IBI=  579.1 ms
+[t=53.25s] HR=93 BPM | IBI=  577.1 ms
+[t=54.25s] HR=96 BPM | IBI=  598.6 ms
+[t=54.25s] HR=96 BPM | IBI=  621.1 ms
+[t=55.24s] HR=96 BPM | IBI=  650.4 ms
+[t=56.24s] HR=95 BPM | IBI=  650.4 ms
+[t=56.24s] HR=95 BPM | IBI=  664.1 ms
+[t=57.24s] HR=95 BPM | IBI=  651.4 ms
+[t=58.24s] HR=94 BPM | IBI=  641.6 ms
+[t=58.24s] HR=94 BPM | IBI=  650.4 ms
+[t=59.24s] HR=94 BPM | IBI=  650.4 ms
+
+=== RECORDING COMPLETE ===
+  Local ISO:  2026-05-05T14:10:42.487-04:00
+  Unix epoch: 1778004642.488
+
+CSV saved:  recordings/polar_h10_20260505_140931.csv
+Meta saved: recordings/polar_h10_20260505_140931.meta.txt
+
+--- Summary ---
+  Beats recorded:  95
+  Mean HR:         97.3 BPM
+  Mean IBI:        616.9 ms
+  IBI range:       529.3 - 715.8 ms
+  SDNN:            42.1 ms
+  RMSSD:           17.1 ms
+  pNN50:           0.0 %
+
+  Recording: 2026-05-05T14:09:42.486-04:00  ->  2026-05-05T14:10:42.487-04:00
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+
+Connected to Polar H10 154B1732
+
+Stabilizing connection...
+H10 streaming OK (2 packets)
+
+============================================================
+READY. Press ENTER to start the 60-second recording.
+Both this Mac and mmWave computer should be NTP-synced.
+============================================================
+
+>>> Press ENTER to start... 
+
+*** RECORDING STARTED ***
+  Local ISO:  2026-05-05T14:14:46.367-04:00
+  Unix epoch: 1778004886.367
+  Duration:   60 seconds
+
+[t= 0.25s] HR=86 BPM | IBI=  623.0 ms
+[t= 1.25s] HR=88 BPM | IBI=  650.4 ms
+[t= 1.25s] HR=88 BPM | IBI=  716.8 ms
+[t= 2.24s] HR=88 BPM | IBI=  763.7 ms
+[t= 3.24s] HR=87 BPM | IBI=  771.5 ms
+[t= 4.24s] HR=85 BPM | IBI=  799.8 ms
+[t= 4.24s] HR=85 BPM | IBI=  744.1 ms
+[t= 5.24s] HR=84 BPM | IBI=  704.1 ms
+[t= 6.23s] HR=84 BPM | IBI=  685.5 ms
+[t= 6.23s] HR=84 BPM | IBI=  679.7 ms
+[t= 7.23s] HR=85 BPM | IBI=  709.0 ms
+[t= 8.23s] HR=85 BPM | IBI=  733.4 ms
+[t= 9.23s] HR=84 BPM | IBI=  750.0 ms
+[t= 9.23s] HR=84 BPM | IBI=  756.8 ms
+[t=10.23s] HR=84 BPM | IBI=  750.0 ms
+[t=11.22s] HR=83 BPM | IBI=  728.5 ms
+[t=11.22s] HR=83 BPM | IBI=  680.7 ms
+[t=12.22s] HR=83 BPM | IBI=  659.2 ms
+[t=13.22s] HR=84 BPM | IBI=  650.4 ms
+[t=14.21s] HR=86 BPM | IBI=  671.9 ms
+[t=14.21s] HR=86 BPM | IBI=  724.6 ms
+[t=15.21s] HR=86 BPM | IBI=  768.6 ms
+[t=16.21s] HR=85 BPM | IBI=  790.0 ms
+[t=17.21s] HR=83 BPM | IBI=  799.8 ms
+[t=17.21s] HR=83 BPM | IBI=  765.6 ms
+[t=18.20s] HR=82 BPM | IBI=  705.1 ms
+[t=19.20s] HR=83 BPM | IBI=  686.5 ms
+[t=19.20s] HR=83 BPM | IBI=  683.6 ms
+[t=20.20s] HR=83 BPM | IBI=  714.8 ms
+[t=21.20s] HR=83 BPM | IBI=  747.1 ms
+[t=22.20s] HR=83 BPM | IBI=  775.4 ms
+[t=23.19s] HR=82 BPM | IBI=  806.6 ms
+[t=23.19s] HR=82 BPM | IBI=  815.4 ms
+[t=24.19s] HR=81 BPM | IBI=  804.7 ms
+[t=25.19s] HR=80 BPM | IBI=  745.1 ms
+[t=25.19s] HR=80 BPM | IBI=  686.5 ms
+[t=26.19s] HR=80 BPM | IBI=  667.0 ms
+[t=27.18s] HR=81 BPM | IBI=  661.1 ms
+[t=28.18s] HR=83 BPM | IBI=  677.7 ms
+[t=28.18s] HR=83 BPM | IBI=  732.4 ms
+[t=29.18s] HR=83 BPM | IBI=  776.4 ms
+[t=30.17s] HR=83 BPM | IBI=  802.7 ms
+[t=31.17s] HR=81 BPM | IBI=  804.7 ms
+[t=31.17s] HR=81 BPM | IBI=  765.6 ms
+[t=32.67s] HR=81 BPM | IBI=  711.9 ms
+[t=33.17s] HR=81 BPM | IBI=  683.6 ms
+[t=33.17s] HR=81 BPM | IBI=  682.6 ms
+[t=34.17s] HR=82 BPM | IBI=  699.2 ms
+[t=35.17s] HR=83 BPM | IBI=  732.4 ms
+[t=36.16s] HR=82 BPM | IBI=  757.8 ms
+[t=36.16s] HR=82 BPM | IBI=  745.1 ms
+[t=37.16s] HR=82 BPM | IBI=  704.1 ms
+[t=38.16s] HR=83 BPM | IBI=  688.5 ms
+[t=38.16s] HR=83 BPM | IBI=  690.4 ms
+[t=39.15s] HR=83 BPM | IBI=  726.6 ms
+[t=40.15s] HR=83 BPM | IBI=  767.6 ms
+[t=41.15s] HR=83 BPM | IBI=  801.8 ms
+[t=43.14s] HR=81 BPM | IBI=  807.6 ms
+[t=43.14s] HR=81 BPM | IBI=  779.3 ms
+[t=43.14s] HR=81 BPM | IBI=  747.1 ms
+[t=44.14s] HR=81 BPM | IBI=  765.6 ms
+[t=45.14s] HR=80 BPM | IBI=  760.7 ms
+[t=45.14s] HR=80 BPM | IBI=  766.6 ms
+[t=46.14s] HR=80 BPM | IBI=  757.8 ms
+[t=47.13s] HR=80 BPM | IBI=  715.8 ms
+[t=49.13s] HR=80 BPM | IBI=  738.3 ms
+[t=49.13s] HR=80 BPM | IBI=  698.2 ms
+[t=49.13s] HR=81 BPM | IBI=  681.6 ms
+[t=49.13s] HR=81 BPM | IBI=  659.2 ms
+[t=50.12s] HR=82 BPM | IBI=  637.7 ms
+[t=51.12s] HR=85 BPM | IBI=  635.7 ms
+[t=51.12s] HR=85 BPM | IBI=  627.9 ms
+[t=52.12s] HR=86 BPM | IBI=  652.3 ms
+[t=53.12s] HR=87 BPM | IBI=  666.0 ms
+[t=53.12s] HR=87 BPM | IBI=  667.0 ms
+[t=54.12s] HR=88 BPM | IBI=  670.9 ms
+[t=55.11s] HR=88 BPM | IBI=  655.3 ms
+[t=55.11s] HR=88 BPM | IBI=  651.4 ms
+[t=56.11s] HR=89 BPM | IBI=  636.7 ms
+[t=57.11s] HR=90 BPM | IBI=  639.6 ms
+[t=57.11s] HR=90 BPM | IBI=  651.4 ms
+[t=58.11s] HR=91 BPM | IBI=  679.7 ms
+[t=59.10s] HR=90 BPM | IBI=  686.5 ms
+[t=59.10s] HR=90 BPM | IBI=  680.7 ms
+
+=== RECORDING COMPLETE ===
+  Local ISO:  2026-05-05T14:15:46.368-04:00
+  Unix epoch: 1778004946.369
+
+CSV saved:  recordings/polar_h10_20260505_141100.csv
+Meta saved: recordings/polar_h10_20260505_141100.meta.txt
+
+--- Summary ---
+  Beats recorded:  84
+  Mean HR:         83.7 BPM
+  Mean IBI:        717.2 ms
+  IBI range:       623.0 - 815.4 ms
+  SDNN:            52.4 ms
+  RMSSD:           29.0 ms
+  pNN50:           9.6 %
+
+  Recording: 2026-05-05T14:14:46.367-04:00  ->  2026-05-05T14:15:46.368-04:00
+(base) yutongwu@dhcp-10-31-137-221 Desktop %                                
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py       
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+
+Connected to Polar H10 154B1732
+
+Stabilizing connection...
+H10 streaming OK (2 packets)
+
+============================================================
+READY. Press ENTER to start the 60-second recording.
+Both this Mac and mmWave computer should be NTP-synced.
+============================================================
+
+>>> Press ENTER to start... 
+
+*** RECORDING STARTED ***
+  Local ISO:  2026-05-05T14:23:40.787-04:00
+  Unix epoch: 1778005420.788
+  Duration:   60 seconds
+
+[t= 0.50s] HR=100 BPM | IBI=  617.2 ms
+[t= 1.50s] HR=99 BPM | IBI=  640.6 ms
+[t= 1.50s] HR=99 BPM | IBI=  653.3 ms
+[t= 2.50s] HR=98 BPM | IBI=  664.1 ms
+[t= 3.50s] HR=96 BPM | IBI=  649.4 ms
+[t= 3.50s] HR=96 BPM | IBI=  641.6 ms
+[t= 4.50s] HR=95 BPM | IBI=  637.7 ms
+[t= 5.49s] HR=95 BPM | IBI=  643.6 ms
+[t= 5.49s] HR=95 BPM | IBI=  681.6 ms
+[t= 6.49s] HR=94 BPM | IBI=  694.3 ms
+[t= 8.48s] HR=92 BPM | IBI=  709.0 ms
+[t= 8.48s] HR=92 BPM | IBI=  701.2 ms
+[t= 9.48s] HR=91 BPM | IBI=  665.0 ms
+[t= 9.98s] HR=90 BPM | IBI=  645.5 ms
+[t= 9.98s] HR=90 BPM | IBI=  631.8 ms
+[t=10.98s] HR=91 BPM | IBI=  630.9 ms
+[t=11.98s] HR=92 BPM | IBI=  657.2 ms
+[t=11.98s] HR=92 BPM | IBI=  689.5 ms
+[t=12.97s] HR=91 BPM | IBI=  701.2 ms
+[t=13.97s] HR=90 BPM | IBI=  697.3 ms
+[t=13.97s] HR=90 BPM | IBI=  698.2 ms
+[t=14.97s] HR=89 BPM | IBI=  685.5 ms
+[t=15.97s] HR=89 BPM | IBI=  658.2 ms
+[t=15.97s] HR=89 BPM | IBI=  655.3 ms
+[t=16.96s] HR=89 BPM | IBI=  642.6 ms
+[t=17.96s] HR=90 BPM | IBI=  658.2 ms
+[t=19.46s] HR=90 BPM | IBI=  712.9 ms
+[t=19.46s] HR=90 BPM | IBI=  752.9 ms
+[t=19.96s] HR=89 BPM | IBI=  762.7 ms
+[t=20.95s] HR=87 BPM | IBI=  770.5 ms
+[t=21.95s] HR=85 BPM | IBI=  768.6 ms
+[t=21.95s] HR=85 BPM | IBI=  759.8 ms
+[t=23.45s] HR=84 BPM | IBI=  711.9 ms
+[t=23.95s] HR=84 BPM | IBI=  690.4 ms
+[t=23.95s] HR=84 BPM | IBI=  669.9 ms
+[t=24.94s] HR=85 BPM | IBI=  671.9 ms
+[t=25.94s] HR=85 BPM | IBI=  710.0 ms
+[t=26.94s] HR=85 BPM | IBI=  729.5 ms
+[t=26.94s] HR=85 BPM | IBI=  744.1 ms
+[t=27.94s] HR=85 BPM | IBI=  741.2 ms
+[t=28.93s] HR=84 BPM | IBI=  718.8 ms
+[t=28.93s] HR=84 BPM | IBI=  700.2 ms
+[t=29.93s] HR=84 BPM | IBI=  684.6 ms
+[t=30.93s] HR=84 BPM | IBI=  689.5 ms
+[t=31.93s] HR=85 BPM | IBI=  707.0 ms
+[t=31.93s] HR=85 BPM | IBI=  731.4 ms
+[t=32.92s] HR=85 BPM | IBI=  737.3 ms
+[t=33.92s] HR=84 BPM | IBI=  752.9 ms
+[t=33.92s] HR=84 BPM | IBI=  746.1 ms
+[t=34.92s] HR=83 BPM | IBI=  708.0 ms
+[t=35.92s] HR=83 BPM | IBI=  685.5 ms
+[t=36.91s] HR=84 BPM | IBI=  673.8 ms
+[t=36.91s] HR=84 BPM | IBI=  697.3 ms
+[t=37.91s] HR=85 BPM | IBI=  710.0 ms
+[t=38.91s] HR=85 BPM | IBI=  713.9 ms
+[t=38.91s] HR=85 BPM | IBI=  712.9 ms
+[t=39.91s] HR=85 BPM | IBI=  722.7 ms
+[t=40.90s] HR=84 BPM | IBI=  698.2 ms
+[t=40.90s] HR=84 BPM | IBI=  682.6 ms
+[t=41.90s] HR=85 BPM | IBI=  668.9 ms
+[t=42.90s] HR=85 BPM | IBI=  672.9 ms
+[t=43.90s] HR=86 BPM | IBI=  701.2 ms
+[t=43.90s] HR=86 BPM | IBI=  716.8 ms
+[t=44.89s] HR=86 BPM | IBI=  717.8 ms
+[t=45.89s] HR=85 BPM | IBI=  720.7 ms
+[t=45.89s] HR=85 BPM | IBI=  710.0 ms
+[t=46.89s] HR=85 BPM | IBI=  693.4 ms
+[t=47.89s] HR=85 BPM | IBI=  693.4 ms
+[t=48.88s] HR=85 BPM | IBI=  701.2 ms
+[t=48.88s] HR=85 BPM | IBI=  728.5 ms
+[t=49.88s] HR=85 BPM | IBI=  737.3 ms
+[t=50.88s] HR=84 BPM | IBI=  741.2 ms
+[t=50.88s] HR=84 BPM | IBI=  741.2 ms
+[t=51.88s] HR=84 BPM | IBI=  732.4 ms
+[t=52.87s] HR=84 BPM | IBI=  689.5 ms
+[t=52.87s] HR=84 BPM | IBI=  684.6 ms
+[t=53.87s] HR=84 BPM | IBI=  676.8 ms
+[t=54.87s] HR=85 BPM | IBI=  688.5 ms
+[t=55.87s] HR=85 BPM | IBI=  698.2 ms
+[t=55.87s] HR=85 BPM | IBI=  711.9 ms
+[t=56.86s] HR=85 BPM | IBI=  720.7 ms
+[t=57.86s] HR=85 BPM | IBI=  730.5 ms
+[t=57.86s] HR=85 BPM | IBI=  703.1 ms
+[t=58.86s] HR=85 BPM | IBI=  689.5 ms
+
+=== RECORDING COMPLETE ===
+  Local ISO:  2026-05-05T14:24:40.788-04:00
+  Unix epoch: 1778005480.789
+
+CSV saved:  recordings/polar_h10_20260505_141752.csv
+Meta saved: recordings/polar_h10_20260505_141752.meta.txt
+
+--- Summary ---
+  Beats recorded:  84
+  Mean HR:         86.0 BPM
+  Mean IBI:        697.5 ms
+  IBI range:       617.2 - 770.5 ms
+  SDNN:            34.8 ms
+  RMSSD:           19.1 ms
+  pNN50:           1.2 %
+
+  Recording: 2026-05-05T14:23:40.787-04:00  ->  2026-05-05T14:24:40.788-04:00
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+
+Connected to Polar H10 154B1732
+
+Stabilizing connection...
+H10 streaming OK (2 packets)
+
+============================================================
+READY. Press ENTER to start the 60-second recording.
+Both this Mac and mmWave computer should be NTP-synced.
+============================================================
+
+>>> Press ENTER to start... 
+
+*** RECORDING STARTED ***
+  Local ISO:  2026-05-05T14:39:39.664-04:00
+  Unix epoch: 1778006379.664
+  Duration:   60 seconds
+
+[t= 0.74s] HR=92 BPM | IBI=  676.8 ms
+[t= 0.74s] HR=92 BPM | IBI=  633.8 ms
+[t= 1.74s] HR=92 BPM | IBI=  659.2 ms
+[t= 2.74s] HR=92 BPM | IBI=  670.9 ms
+[t= 2.74s] HR=92 BPM | IBI=  693.4 ms
+[t= 3.74s] HR=91 BPM | IBI=  705.1 ms
+[t= 4.73s] HR=90 BPM | IBI=  652.3 ms
+[t= 4.73s] HR=90 BPM | IBI=  636.7 ms
+[t= 5.73s] HR=91 BPM | IBI=  635.7 ms
+[t= 6.73s] HR=91 BPM | IBI=  655.3 ms
+[t= 6.73s] HR=91 BPM | IBI=  676.8 ms
+[t= 7.73s] HR=91 BPM | IBI=  710.9 ms
+[t= 8.72s] HR=90 BPM | IBI=  678.7 ms
+[t= 8.72s] HR=90 BPM | IBI=  664.1 ms
+[t= 9.72s] HR=90 BPM | IBI=  690.4 ms
+[t=10.72s] HR=90 BPM | IBI=  730.5 ms
+[t=11.72s] HR=88 BPM | IBI=  734.4 ms
+[t=11.72s] HR=88 BPM | IBI=  711.9 ms
+[t=13.72s] HR=87 BPM | IBI=  679.7 ms
+[t=13.72s] HR=87 BPM | IBI=  708.0 ms
+[t=13.72s] HR=87 BPM | IBI=  455.1 ms
+[t=14.71s] HR=88 BPM | IBI=  746.1 ms
+[t=15.71s] HR=87 BPM | IBI=  711.9 ms
+[t=15.71s] HR=87 BPM | IBI=  668.0 ms
+[t=17.70s] HR=87 BPM | IBI=  658.2 ms
+[t=17.70s] HR=89 BPM | IBI=  664.1 ms
+[t=17.70s] HR=89 BPM | IBI=  688.5 ms
+[t=18.70s] HR=89 BPM | IBI=  715.8 ms
+[t=19.70s] HR=88 BPM | IBI=  682.6 ms
+[t=20.70s] HR=88 BPM | IBI=  690.4 ms
+[t=20.70s] HR=88 BPM | IBI=  762.7 ms
+[t=22.19s] HR=87 BPM | IBI=  793.9 ms
+[t=22.69s] HR=86 BPM | IBI=  817.4 ms
+[t=23.69s] HR=84 BPM | IBI=  761.7 ms
+[t=24.69s] HR=83 BPM | IBI=  802.7 ms
+[t=24.69s] HR=83 BPM | IBI=  834.0 ms
+[t=25.68s] HR=81 BPM | IBI=  843.8 ms
+[t=26.68s] HR=80 BPM | IBI=  775.4 ms
+[t=27.68s] HR=80 BPM | IBI=  793.9 ms
+[t=28.68s] HR=79 BPM | IBI=  809.6 ms
+[t=28.68s] HR=79 BPM | IBI=  812.5 ms
+[t=29.67s] HR=79 BPM | IBI=  773.4 ms
+[t=30.67s] HR=78 BPM | IBI=  725.6 ms
+[t=31.67s] HR=79 BPM | IBI=  722.7 ms
+[t=31.67s] HR=79 BPM | IBI=  752.9 ms
+[t=33.16s] HR=79 BPM | IBI=  754.9 ms
+[t=33.66s] HR=79 BPM | IBI=  753.9 ms
+[t=33.66s] HR=79 BPM | IBI=  752.9 ms
+[t=34.66s] HR=79 BPM | IBI=  723.6 ms
+[t=35.66s] HR=79 BPM | IBI=  725.6 ms
+[t=37.65s] HR=80 BPM | IBI=  752.0 ms
+[t=37.65s] HR=80 BPM | IBI=  769.5 ms
+[t=37.65s] HR=80 BPM | IBI=  756.8 ms
+[t=38.65s] HR=80 BPM | IBI=  710.9 ms
+[t=39.65s] HR=80 BPM | IBI=  693.4 ms
+[t=39.65s] HR=80 BPM | IBI=  691.4 ms
+[t=40.64s] HR=81 BPM | IBI=  706.1 ms
+[t=41.64s] HR=82 BPM | IBI=  713.9 ms
+[t=41.64s] HR=82 BPM | IBI=  711.9 ms
+[t=42.64s] HR=82 BPM | IBI=  704.1 ms
+[t=43.64s] HR=82 BPM | IBI=  675.8 ms
+[t=44.64s] HR=84 BPM | IBI=  684.6 ms
+[t=44.64s] HR=84 BPM | IBI=  722.7 ms
+[t=45.63s] HR=84 BPM | IBI=  744.1 ms
+[t=46.63s] HR=83 BPM | IBI=  766.6 ms
+[t=46.63s] HR=83 BPM | IBI=  731.4 ms
+[t=47.63s] HR=83 BPM | IBI=  700.2 ms
+[t=48.63s] HR=83 BPM | IBI=  709.0 ms
+[t=49.62s] HR=83 BPM | IBI=  713.9 ms
+[t=49.62s] HR=83 BPM | IBI=  716.8 ms
+[t=50.62s] HR=83 BPM | IBI=  721.7 ms
+[t=51.62s] HR=83 BPM | IBI=  709.0 ms
+[t=52.61s] HR=84 BPM | IBI=  704.1 ms
+[t=52.61s] HR=84 BPM | IBI=  736.3 ms
+[t=54.61s] HR=84 BPM | IBI=  757.8 ms
+[t=54.61s] HR=83 BPM | IBI=  751.0 ms
+[t=54.61s] HR=83 BPM | IBI=  714.8 ms
+[t=55.61s] HR=83 BPM | IBI=  697.3 ms
+[t=57.60s] HR=83 BPM | IBI=  720.7 ms
+[t=57.60s] HR=83 BPM | IBI=  744.1 ms
+[t=57.60s] HR=83 BPM | IBI=  759.8 ms
+[t=58.60s] HR=83 BPM | IBI=  716.8 ms
+[t=59.60s] HR=82 BPM | IBI=  691.4 ms
+
+=== RECORDING COMPLETE ===
+  Local ISO:  2026-05-05T14:40:39.665-04:00
+  Unix epoch: 1778006439.665
+
+CSV saved:  recordings/polar_h10_20260505_143844.csv
+Meta saved: recordings/polar_h10_20260505_143844.meta.txt
+
+--- Summary ---
+  Beats recorded:  83
+  Mean HR:         83.6 BPM
+  Mean IBI:        717.8 ms
+  IBI range:       455.1 - 843.8 ms
+  SDNN:            54.0 ms
+  RMSSD:           50.5 ms
+  pNN50:           7.3 %
+
+  Recording: 2026-05-05T14:39:39.664-04:00  ->  2026-05-05T14:40:39.665-04:00
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Polar H10 not found. Check strap, electrodes, phone Bluetooth.
+(base) yutongwu@dhcp-10-31-137-221 Desktop % Desktop % python3 polar_h10_60s_synced.py
+zsh: command not found: Desktop
+(base) yutongwu@dhcp-10-31-137-221 Desktop % Desktop % python3 polar_h10_60s_synced.py
+zsh: command not found: Desktop
+(base) yutongwu@dhcp-10-31-137-221 Desktop % python3 polar_h10_60s_synced.py
+Trial label (e.g. subject01_rest, or blank): 
+Scanning for Polar H10...
+Found: Polar H10 154B1732
+
+Connected to Polar H10 154B1732
+
+Stabilizing connection...
+H10 streaming OK (2 packets)
+
+============================================================
+READY. Press ENTER to start the 60-second recording.
+Both this Mac and mmWave computer should be NTP-synced.
+============================================================
+
+>>> Press ENTER to start... 
+
+*** RECORDING STARTED ***
+  Local ISO:  2026-05-05T15:08:08.956-04:00
+  Unix epoch: 1778008088.956
+  Duration:   60 seconds
+
+[t= 0.87s] HR=79 BPM | IBI=  780.3 ms
+[t= 1.87s] HR=79 BPM | IBI=  779.3 ms
+[t= 1.87s] HR=79 BPM | IBI=  751.0 ms
+[t= 2.87s] HR=79 BPM | IBI=  682.6 ms
+[t= 3.86s] HR=79 BPM | IBI=  661.1 ms
+[t= 4.86s] HR=81 BPM | IBI=  647.5 ms
+[t= 4.86s] HR=81 BPM | IBI=  696.3 ms
+[t= 5.86s] HR=82 BPM | IBI=  755.9 ms
+[t= 6.86s] HR=82 BPM | IBI=  799.8 ms
+[t= 7.85s] HR=82 BPM | IBI=  824.2 ms
+[t= 8.85s] HR=80 BPM | IBI=  825.2 ms
+[t= 8.85s] HR=80 BPM | IBI=  807.6 ms
+[t= 9.85s] HR=79 BPM | IBI=  752.0 ms
+[t=10.85s] HR=79 BPM | IBI=  727.5 ms
+[t=11.84s] HR=80 BPM | IBI=  735.4 ms
+[t=11.84s] HR=80 BPM | IBI=  755.9 ms
+[t=12.84s] HR=80 BPM | IBI=  784.2 ms
+[t=13.84s] HR=80 BPM | IBI=  793.9 ms
+[t=14.84s] HR=79 BPM | IBI=  785.2 ms
+[t=14.84s] HR=79 BPM | IBI=  728.5 ms
+[t=15.83s] HR=79 BPM | IBI=  700.2 ms
+[t=16.83s] HR=79 BPM | IBI=  703.1 ms
+[t=17.83s] HR=81 BPM | IBI=  715.8 ms
+[t=17.83s] HR=81 BPM | IBI=  755.9 ms
+[t=19.32s] HR=81 BPM | IBI=  776.4 ms
+[t=19.82s] HR=80 BPM | IBI=  793.0 ms
+[t=20.82s] HR=80 BPM | IBI=  794.9 ms
+[t=20.82s] HR=80 BPM | IBI=  783.2 ms
+[t=21.82s] HR=79 BPM | IBI=  726.6 ms
+[t=22.81s] HR=80 BPM | IBI=  697.3 ms
+[t=22.81s] HR=80 BPM | IBI=  686.5 ms
+[t=23.81s] HR=80 BPM | IBI=  696.3 ms
+[t=24.81s] HR=81 BPM | IBI=  753.9 ms
+[t=25.81s] HR=81 BPM | IBI=  777.3 ms
+[t=26.80s] HR=81 BPM | IBI=  780.3 ms
+[t=26.80s] HR=81 BPM | IBI=  765.6 ms
+[t=27.80s] HR=80 BPM | IBI=  713.9 ms
+[t=28.80s] HR=81 BPM | IBI=  695.3 ms
+[t=28.80s] HR=81 BPM | IBI=  705.1 ms
+[t=29.80s] HR=81 BPM | IBI=  733.4 ms
+[t=30.80s] HR=82 BPM | IBI=  745.1 ms
+[t=31.79s] HR=81 BPM | IBI=  753.9 ms
+[t=31.79s] HR=81 BPM | IBI=  748.0 ms
+[t=32.79s] HR=81 BPM | IBI=  710.0 ms
+[t=33.79s] HR=81 BPM | IBI=  696.3 ms
+[t=34.79s] HR=82 BPM | IBI=  711.9 ms
+[t=34.79s] HR=82 BPM | IBI=  746.1 ms
+[t=35.78s] HR=82 BPM | IBI=  775.4 ms
+[t=36.78s] HR=82 BPM | IBI=  784.2 ms
+[t=37.78s] HR=81 BPM | IBI=  772.5 ms
+[t=37.78s] HR=81 BPM | IBI=  731.4 ms
+[t=38.78s] HR=81 BPM | IBI=  715.8 ms
+[t=39.77s] HR=81 BPM | IBI=  731.4 ms
+[t=40.77s] HR=81 BPM | IBI=  754.9 ms
+[t=40.77s] HR=81 BPM | IBI=  759.8 ms
+[t=41.77s] HR=81 BPM | IBI=  750.0 ms
+[t=42.77s] HR=81 BPM | IBI=  718.8 ms
+[t=42.77s] HR=81 BPM | IBI=  687.5 ms
+[t=43.76s] HR=81 BPM | IBI=  660.2 ms
+[t=44.76s] HR=83 BPM | IBI=  651.4 ms
+[t=44.76s] HR=83 BPM | IBI=  697.3 ms
+[t=45.76s] HR=84 BPM | IBI=  728.5 ms
+[t=46.76s] HR=84 BPM | IBI=  729.5 ms
+[t=46.76s] HR=84 BPM | IBI=  704.1 ms
+[t=47.75s] HR=84 BPM | IBI=  674.8 ms
+[t=49.75s] HR=84 BPM | IBI=  705.1 ms
+[t=49.75s] HR=84 BPM | IBI=  676.8 ms
+[t=49.75s] HR=85 BPM | IBI=  659.2 ms
+[t=50.75s] HR=85 BPM | IBI=  663.1 ms
+[t=51.74s] HR=86 BPM | IBI=  695.3 ms
+[t=51.74s] HR=86 BPM | IBI=  759.8 ms
+[t=52.74s] HR=86 BPM | IBI=  759.8 ms
+[t=53.74s] HR=85 BPM | IBI=  773.4 ms
+[t=54.74s] HR=83 BPM | IBI=  776.4 ms
+[t=54.74s] HR=83 BPM | IBI=  769.5 ms
+[t=55.73s] HR=83 BPM | IBI=  724.6 ms
+[t=56.73s] HR=82 BPM | IBI=  695.3 ms
+[t=57.73s] HR=83 BPM | IBI=  717.8 ms
+[t=57.73s] HR=83 BPM | IBI=  760.7 ms
+[t=58.73s] HR=83 BPM | IBI=  766.6 ms
+[t=59.72s] HR=82 BPM | IBI=  777.3 ms
+
+=== RECORDING COMPLETE ===
+  Local ISO:  2026-05-05T15:09:08.956-04:00
+  Unix epoch: 1778008148.956
+
+CSV saved:  recordings/polar_h10_20260505_150612.csv
+Meta saved: recordings/polar_h10_20260505_150612.meta.txt
+
+--- Summary ---
+  Beats recorded:  81
+  Mean HR:         81.5 BPM
+  Mean IBI:        736.4 ms
+  IBI range:       647.5 - 825.2 ms
+  SDNN:            42.4 ms
+  RMSSD:           28.8 ms
+  pNN50:           10.0 %
+
+  Recording: 2026-05-05T15:08:08.956-04:00  ->  2026-05-05T15:09:08.956-04:00
+(base) yutongwu@dhcp-10-31-137-221 Desktop % 
