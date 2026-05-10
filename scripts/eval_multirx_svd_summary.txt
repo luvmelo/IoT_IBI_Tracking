@@ -1,0 +1,68 @@
+==============================================================================
+Multi-RX SVD combining vs naive mean-RX -- offline eval
+==============================================================================
+
+Radar IQ CSV          : C:\Users\rapha\Desktop\MIT\Sensor & Mobile Computing\Final\MakeyMakey\recordings\session_2026-05-10_16-11-27.csv
+Polar H10 CSV         : C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file\2026-05\polar_h10_radar_sync_01_20260510_160910(1).csv
+Session start (unix)  : 1778443887.064479
+Sampling rate fs (Hz) : 100.000
+Radar frames          : 6259
+Radar duration (s)    : 62.59
+Bandpass (Hz)         : 0.80 - 2.50
+Beat-match window (s) : +/- 0.40
+
+------------------------------------------------------------------------------
+Polar H10 ground truth
+------------------------------------------------------------------------------
+  n_beats (deduped)     : 59
+  duration (s)          : 58.85
+  mean HR (bpm)         : 84.24
+  mean IBI (ms)         : 715.87
+
+------------------------------------------------------------------------------
+Radar run: BASELINE (mean-RX)
+------------------------------------------------------------------------------
+  n_peaks               : 76
+  n_ibis                : 75
+  n_kept (clean_ibi)    : 56
+  mean radar HR (bpm)   : 78.45
+  mean radar IBI (ms)   : 764.80
+  matched pairs         : 40 of 59 polar beats
+  HR-1Hz n_samples      : 58
+  HR-1Hz Pearson r      : -0.1137
+  HR-1Hz MAE (bpm)      : 15.120
+  HR-1Hz RMSE (bpm)     : 18.019
+  HR-1Hz bias (bpm)     : -3.146
+
+------------------------------------------------------------------------------
+Radar run: SVD (multi-RX MRC)
+------------------------------------------------------------------------------
+  n_peaks               : 77
+  n_ibis                : 76
+  n_kept (clean_ibi)    : 57
+  mean radar HR (bpm)   : 80.65
+  mean radar IBI (ms)   : 743.98
+  matched pairs         : 40 of 59 polar beats
+  HR-1Hz n_samples      : 58
+  HR-1Hz Pearson r      : -0.0654
+  HR-1Hz MAE (bpm)      : 14.199
+  HR-1Hz RMSE (bpm)     : 17.002
+  HR-1Hz bias (bpm)     : -0.360
+
+==============================================================================
+Before / After comparison (1 Hz HR grid)
+==============================================================================
+  metric                        BASELINE  SVD (multi-RX)  delta (SVD-base)
+  --------------------------------------------------------------------------
+  Pearson r                      -0.1137         -0.0654          0.0483
+  MAE (bpm)                       15.120          14.199          -0.921
+  RMSE (bpm)                      18.019          17.002          -1.017
+  bias (bpm)                      -3.146          -0.360           2.787
+
+------------------------------------------------------------------------------
+Verdict
+------------------------------------------------------------------------------
+  WIN: SVD beats mean-RX on BOTH Pearson r AND MAE.
+     Pearson r:  -0.1137 -> -0.0654  (delta +0.0483)
+     MAE (bpm): 15.120 -> 14.199  (delta -0.921)
+==============================================================================

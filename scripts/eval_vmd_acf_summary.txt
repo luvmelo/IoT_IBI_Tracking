@@ -1,0 +1,87 @@
+==============================================================================
+VMD + Autocorrelation vs Bandpass baseline -- evaluation report
+==============================================================================
+
+Radar IQ CSV          : C:\Users\rapha\Desktop\MIT\Sensor & Mobile Computing\Final\MakeyMakey\recordings\session_2026-05-10_16-11-27.csv
+Polar H10 CSV         : C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file\2026-05\polar_h10_radar_sync_01_20260510_160910(1).csv
+vmdpy installed       : True
+Session start (unix)  : 1778447561.416337
+Sampling rate fs      : 100.000 Hz
+Radar frames          : 6662
+Radar duration        : 66.62 s
+
+------------------------------------------------------------------------------
+Polar H10 ground truth
+------------------------------------------------------------------------------
+  n_beats (deduped)     : 60
+  duration              : 59.87 s
+  mean HR (bpm)         : 78.37
+  mean IBI (ms)         : 770.57
+
+------------------------------------------------------------------------------
+BASELINE: BASELINE (0.8-2.5 Hz bandpass)
+------------------------------------------------------------------------------
+  n_peaks               : 74
+  n_ibis                : 73
+  n_kept (clean_ibi)    : 49
+  beat rejection (%)    : 32.88
+  mean radar HR (bpm)   : 70.21
+  mean radar IBI (ms)   : 854.61
+  matched pairs         : 33 of 60 Polar beats
+  paired Pearson r      : 0.0020
+  paired MAE (ms)       : 141.96
+  paired bias (ms)      : 55.95
+  1Hz HR Pearson r      : 0.0235
+  1Hz HR MAE (bpm)      : 12.246
+  1Hz HR RMSE (bpm)     : 15.381
+  1Hz HR bias (bpm)     : -4.379
+
+------------------------------------------------------------------------------
+VMD: VMD+ACF (K=5, alpha=2000, cardiac f0=1.23 Hz)
+------------------------------------------------------------------------------
+  VMD mode count K      : 5
+  VMD center freqs (Hz) : [0.178, 0.662, 1.235, 2.677, 5.736]
+  Cardiac mode index    : 2
+  Cardiac f0 (Hz)       : 1.235
+  Cardiac f0 -> BPM     : 74.08
+  ACF-based BPM         : 75.00
+  n_peaks               : 80
+  n_ibis                : 79
+  n_kept (clean_ibi)    : 72
+  beat rejection (%)    : 8.86
+  mean radar HR (bpm)   : 76.21
+  mean radar IBI (ms)   : 787.34
+  matched pairs         : 47 of 60 Polar beats
+  paired Pearson r      : 0.3874
+  paired MAE (ms)       : 71.78
+  paired bias (ms)      : -5.82
+  1Hz HR Pearson r      : 0.2733
+  1Hz HR MAE (bpm)      : 6.229
+  1Hz HR RMSE (bpm)     : 7.910
+  1Hz HR bias (bpm)     : -0.550
+
+==============================================================================
+Before / After comparison  (BASELINE  vs  VMD+ACF)
+==============================================================================
+  metric                              BASELINE         VMD+ACF           delta
+  --------------------------------------------------------------------------
+  n_peaks                                   74              80              +6
+  n_kept                                    49              72             +23
+  beat rejection (%)                     32.88            8.86          -24.02
+  mean radar HR (bpm)                    70.21           76.21           +6.00
+  matched pairs                             33              47             +14
+  paired Pearson r                      0.0020          0.3874         +0.3855
+  paired MAE (ms)                       141.96           71.78          -70.18
+  paired bias (ms)                       55.95           -5.82          -61.77
+  1Hz HR Pearson r                      0.0235          0.2733         +0.2498
+  1Hz HR MAE (bpm)                      12.246           6.229          -6.017
+  1Hz HR RMSE (bpm)                     15.381           7.910          -7.471
+  1Hz HR bias (bpm)                     -4.379          -0.550          +3.828
+
+------------------------------------------------------------------------------
+Verdict
+------------------------------------------------------------------------------
+  VERDICT: WIN -- VMD+ACF beats baseline on BOTH Pearson r AND MAE.
+    delta Pearson r: +0.3855
+    delta MAE (ms) : -70.18
+==============================================================================

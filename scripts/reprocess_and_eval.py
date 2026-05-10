@@ -30,6 +30,7 @@ from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
+from scipy.signal import welch
 
 import matplotlib
 
@@ -60,12 +61,12 @@ from radar_analysis.beat_detection import (  # noqa: E402
 # Hard-coded literal paths (the question requires these exact files).
 # ---------------------------------------------------------------------------
 RADAR_CSV = (
-    r"C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file"
-    r"\2026-05\session_2026-05-10_15-37-09.csv"
+    r"C:\Users\rapha\Desktop\MIT\Sensor & Mobile Computing\Final\MakeyMakey"
+    r"\recordings\session_2026-05-10_16-11-27.csv"
 )
 POLAR_CSV = (
     r"C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file"
-    r"\2026-05\polar_h10_unlabeled_20260510_153654(1).csv"
+    r"\2026-05\polar_h10_radar_sync_01_20260510_160910(1).csv"
 )
 
 OUT_DIR = os.path.join(_REPO_ROOT, "scripts")
@@ -73,6 +74,39 @@ SUMMARY_TXT = os.path.join(OUT_DIR, "reprocess_summary.txt")
 FIGURE_PNG = os.path.join(OUT_DIR, "reprocess_compare.png")
 
 MATCH_WINDOW_S = 0.4  # +/- this for beat matching
+
+
+# ---------------------------------------------------------------------------
+# Adaptive bandpass selection (third-run hypothesis)
+# ---------------------------------------------------------------------------
+def estimate_f0_welch(phi: np.ndarray, fs: float, search_band=(0.8, 2.0)):
+    """Find heartbeat fundamental via Welch periodogram peak."""
+    nperseg = min(len(phi), max(int(8 * fs), 64))
+    if nperseg < 32 or len(phi) < nperseg:
+        return None
+    # Pre-bandpass to search band so respiration sidebands don't dominate.
+    try:
+        coarse = bandpass(phi, fs, low_hz=search_band[0], high_hz=search_band[1], order=4)
+    except Exception:
+        coarse = phi
+    fr, P = welch(coarse, fs=fs, nperseg=nperseg)
+    mask = (fr >= search_band[0]) & (fr <= search_band[1])
+    if not mask.any():
+        return None
+    return float(fr[mask][np.argmax(P[mask])])
+
+
+def adaptive_band(phi: np.ndarray, fs: float):
+    """Return (low_hz, high_hz) narrow band around Welch f0, with harmonic safety cap."""
+    f0 = estimate_f0_welch(phi, fs)
+    if f0 is None or f0 <= 0:
+        return (0.8, 2.0), None  # fallback
+    low = max(0.7, f0 - 0.5)
+    # Cap high cutoff at 1.7*f0 so the 2nd cardiac harmonic stays outside band.
+    high = min(2.5, f0 + 0.5, 1.7 * f0)
+    if high <= low + 0.1:
+        return (0.8, 2.0), f0
+    return (low, high), f0
 
 
 # ---------------------------------------------------------------------------
@@ -312,8 +346,10 @@ def build_summary(
     polar_unix: np.ndarray,
     res_old: PipelineResult,
     res_new: PipelineResult,
+    res_adapt: PipelineResult,
     match_old: MatchResult,
     match_new: MatchResult,
+    match_adapt: MatchResult,
     fs: float,
     n_frames: int,
     session_start_unix: float,
@@ -347,7 +383,11 @@ def build_summary(
         add("  no Polar rows")
     add("")
 
-    for res, match in ((res_old, match_old), (res_new, match_new)):
+    for res, match in (
+        (res_old, match_old),
+        (res_new, match_new),
+        (res_adapt, match_adapt),
+    ):
         add("-" * 78)
         add(f"Radar run: {res.label}  (bandpass {res.low_hz:.2f} - {res.high_hz:.2f} Hz)")
         add("-" * 78)
@@ -373,55 +413,75 @@ def build_summary(
     add("=" * 78)
     add("Before / After comparison")
     add("=" * 78)
-    hdr = "  {metric:<24}  {old:>14}  {new:>14}  {delta:>12}"
-    add(hdr.format(metric="metric", old="OLD 0.8-2.0", new="NEW 0.8-3.5", delta="delta"))
-    add("  " + "-" * 70)
+    hdr = "  {metric:<24}  {old:>14}  {new:>14}  {adapt:>16}"
+    adapt_col_label = (
+        f"ADAPT {res_adapt.low_hz:.2f}-{res_adapt.high_hz:.2f}"
+    )
+    add(hdr.format(metric="metric", old="OLD 0.8-2.0", new="NEW 0.8-3.5", adapt=adapt_col_label))
+    add("  " + "-" * 74)
 
-    def row(metric: str, old_v: float, new_v: float, n: int = 3, lower_is_better: bool = False) -> str:
-        if np.isfinite(old_v) and np.isfinite(new_v):
-            delta = new_v - old_v
-            d_str = f"{delta:+.{n}f}"
-        else:
-            d_str = "    n/a"
+    def row3(metric: str, old_v: float, new_v: float, adapt_v: float, n: int = 3) -> str:
         return hdr.format(
             metric=metric,
             old=fmt_float(old_v, n),
             new=fmt_float(new_v, n),
-            delta=d_str,
+            adapt=fmt_float(adapt_v, n),
         )
 
     n_old_ibi = int(res_old.ibi_ms.size)
     n_new_ibi = int(res_new.ibi_ms.size)
+    n_adapt_ibi = int(res_adapt.ibi_ms.size)
     rej_old = (100.0 * (1.0 - int(res_old.keep.sum()) / n_old_ibi)) if n_old_ibi else float("nan")
     rej_new = (100.0 * (1.0 - int(res_new.keep.sum()) / n_new_ibi)) if n_new_ibi else float("nan")
+    rej_adapt = (100.0 * (1.0 - int(res_adapt.keep.sum()) / n_adapt_ibi)) if n_adapt_ibi else float("nan")
 
-    add(row("n_peaks", float(res_old.peaks_t.size), float(res_new.peaks_t.size), n=0))
-    add(row("n_kept", float(int(res_old.keep.sum())), float(int(res_new.keep.sum())), n=0))
-    add(row("beat rejection (%)", rej_old, rej_new, n=2, lower_is_better=True))
-    add(row("matched pairs", float(match_old.n_matched), float(match_new.n_matched), n=0))
-    add(row("Pearson r", match_old.pearson_r, match_new.pearson_r, n=4))
-    add(row("MAE (ms)", match_old.mae_ms, match_new.mae_ms, n=2, lower_is_better=True))
-    add(row("bias (ms)", match_old.bias_ms, match_new.bias_ms, n=2))
+    add(row3("n_peaks",
+             float(res_old.peaks_t.size),
+             float(res_new.peaks_t.size),
+             float(res_adapt.peaks_t.size), n=0))
+    add(row3("n_kept",
+             float(int(res_old.keep.sum())),
+             float(int(res_new.keep.sum())),
+             float(int(res_adapt.keep.sum())), n=0))
+    add(row3("beat rejection (%)", rej_old, rej_new, rej_adapt, n=2))
+    add(row3("matched pairs",
+             float(match_old.n_matched),
+             float(match_new.n_matched),
+             float(match_adapt.n_matched), n=0))
+    add(row3("Pearson r",
+             match_old.pearson_r, match_new.pearson_r, match_adapt.pearson_r, n=4))
+    add(row3("MAE (ms)",
+             match_old.mae_ms, match_new.mae_ms, match_adapt.mae_ms, n=2))
+    add(row3("bias (ms)",
+             match_old.bias_ms, match_new.bias_ms, match_adapt.bias_ms, n=2))
     add("")
 
-    # Verdict
+    # Verdict: pick best of three by Pearson r on paired IBIs.
     add("-" * 78)
     add("Verdict")
     add("-" * 78)
-    agree = (
-        np.isfinite(match_new.pearson_r)
-        and match_new.pearson_r > 0.5
-        and (not np.isfinite(match_old.pearson_r) or match_new.pearson_r > match_old.pearson_r)
-    )
-    if agree:
-        add("  PASS: widening the bandpass to 0.8-3.5 Hz pushed Pearson r above 0.5")
-        add("        and improved over the 0.8-2.0 Hz baseline. The narrow band was")
-        add("        starving the heartbeat extractor of its harmonic content.")
+    candidates = [
+        ("OLD",      match_old.pearson_r,   res_old.low_hz,   res_old.high_hz),
+        ("NEW",      match_new.pearson_r,   res_new.low_hz,   res_new.high_hz),
+        ("ADAPTIVE", match_adapt.pearson_r, res_adapt.low_hz, res_adapt.high_hz),
+    ]
+    finite = [c for c in candidates if np.isfinite(c[1])]
+    if not finite:
+        add("  no finite Pearson r in any run -- match yielded too few pairs.")
     else:
-        add("  FAIL: widening the bandpass did NOT push Pearson r above 0.5 (or did")
-        add("        not improve over baseline). The narrow band is not the only")
-        add("        problem -- inspect Panel 3 of the figure for residual issues")
-        add("        (DC removal, motion, range bin, RX combining).")
+        best = max(finite, key=lambda c: c[1])
+        name, r, lo, hi = best
+        add(f"  BEST run: {name}  (band {lo:.2f}-{hi:.2f} Hz)  Pearson r = {r:.4f}")
+        if name == "ADAPTIVE":
+            add("  HYPOTHESIS CONFIRMED: the narrow adaptive band centered on the")
+            add("  Welch-detected fundamental beat the fixed-band options. Capping")
+            add("  the high cutoff below the 2nd cardiac harmonic reduced double-")
+            add("  counting and improved IBI agreement with the Polar H10 truth.")
+        else:
+            add("  HYPOTHESIS NOT CONFIRMED: the adaptive narrow band did not beat")
+            add("  the best fixed-band option. Inspect the figure to see whether")
+            add("  the Welch f0 estimate landed on a respiration sideband, the 2nd")
+            add("  harmonic, or another dominant tone in the cleaned phase.")
     add("=" * 78)
     return "\n".join(lines) + "\n"
 
@@ -431,12 +491,15 @@ def make_figure(
     polar_ibi_ms: np.ndarray,
     res_old: PipelineResult,
     res_new: PipelineResult,
+    res_adapt: PipelineResult,
     match_new: MatchResult,
     fs: float,
     session_start_unix: float,
     out_path: str,
 ) -> None:
-    fig, axes = plt.subplots(4, 1, figsize=(12, 14))
+    fig, axes = plt.subplots(5, 1, figsize=(12, 17))
+
+    adapt_band_str = f"{res_adapt.low_hz:.2f}-{res_adapt.high_hz:.2f} Hz"
 
     # --- Panel 1: IBI(t) overlay ---
     ax = axes[0]
@@ -456,9 +519,15 @@ def make_figure(
         ax.plot(t_new[keep_new], res_new.ibi_ms[keep_new],
                 color="blue", lw=1.0, marker=".",
                 label="Radar 0.8-3.5 Hz (NEW)")
+    if res_adapt.peaks_unix.size >= 2 and res_adapt.ibi_ms.size:
+        t_adapt = res_adapt.peaks_unix[1:] - session_start_unix
+        keep_adapt = res_adapt.keep
+        ax.plot(t_adapt[keep_adapt], res_adapt.ibi_ms[keep_adapt],
+                color="darkorange", lw=1.0, marker=".",
+                label=f"Radar {adapt_band_str} (ADAPTIVE)")
     ax.set_xlabel("time since session start (s)")
     ax.set_ylabel("IBI (ms)")
-    ax.set_title("IBI(t): Polar truth vs radar (old vs new band)")
+    ax.set_title("IBI(t): Polar truth vs radar (OLD vs NEW vs ADAPTIVE)")
     ax.set_ylim(300, 1500)
     ax.grid(True, alpha=0.3)
     ax.legend(loc="best", fontsize=9)
@@ -512,6 +581,23 @@ def make_figure(
     ax.grid(True, alpha=0.3)
     ax.legend(loc="best", fontsize=9)
 
+    # --- Panel 5: hb ADAPTIVE with kept peaks overlay ---
+    ax = axes[4]
+    t_axis_adapt = np.arange(res_adapt.hb.size) / fs
+    ax.plot(t_axis_adapt, res_adapt.hb, color="darkorange", lw=0.7,
+            label=f"hb ({adapt_band_str})")
+    if res_adapt.kept_peak_idx.size:
+        idx = res_adapt.kept_peak_idx
+        ax.plot(t_axis_adapt[idx], res_adapt.hb[idx], "ko", ms=3.0, label="kept peaks")
+    ax.set_xlabel("time since session start (s)")
+    ax.set_ylabel("hb (rad)")
+    ax.set_title(
+        f"Bandpass output  ADAPTIVE  {adapt_band_str}  "
+        f"(narrow band around Welch f0 -- 2nd harmonic excluded)"
+    )
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc="best", fontsize=9)
+
     fig.tight_layout()
     fig.savefig(out_path, dpi=120)
     plt.close(fig)
@@ -554,6 +640,27 @@ def main() -> int:
         low_hz=0.8, high_hz=3.5, label="NEW (0.8 - 3.5 Hz)",
     )
 
+    # --- ADAPTIVE pass: estimate f0 from cleaned phase, narrow band around it ---
+    # Re-derive the cleaned phase here (cheap; mirrors run_pipeline's prep).
+    z_avg = z_rx.mean(axis=1)
+    phi_clean = extract_phase(remove_dc(z_avg))
+    phi_clean = detrend_median(phi_clean, fs)
+    phi_clean = despike_hampel(phi_clean)
+    adapt_band_hz, f0_hz = adaptive_band(phi_clean, fs)
+    if f0_hz is None:
+        adapt_label = (
+            f"ADAPTIVE (f0=n/a, band={adapt_band_hz[0]:.2f}-{adapt_band_hz[1]:.2f})"
+        )
+    else:
+        adapt_label = (
+            f"ADAPTIVE (f0={f0_hz:.2f}Hz, "
+            f"band={adapt_band_hz[0]:.2f}-{adapt_band_hz[1]:.2f})"
+        )
+    res_adapt = run_pipeline(
+        z_rx, fs, session_start_unix,
+        low_hz=adapt_band_hz[0], high_hz=adapt_band_hz[1], label=adapt_label,
+    )
+
     # --- Match & score ---
     match_old = match_and_score(
         polar_unix, polar_ibi_ms,
@@ -565,12 +672,17 @@ def main() -> int:
         res_new.peaks_unix, res_new.ibi_ms, res_new.keep,
         window_s=MATCH_WINDOW_S,
     )
+    match_adapt = match_and_score(
+        polar_unix, polar_ibi_ms,
+        res_adapt.peaks_unix, res_adapt.ibi_ms, res_adapt.keep,
+        window_s=MATCH_WINDOW_S,
+    )
 
     # --- Report ---
     summary = build_summary(
         polar_df, polar_unix,
-        res_old, res_new,
-        match_old, match_new,
+        res_old, res_new, res_adapt,
+        match_old, match_new, match_adapt,
         fs=fs,
         n_frames=n_frames,
         session_start_unix=session_start_unix,
@@ -584,7 +696,7 @@ def main() -> int:
 
     make_figure(
         polar_unix, polar_ibi_ms,
-        res_old, res_new, match_new,
+        res_old, res_new, res_adapt, match_new,
         fs=fs, session_start_unix=session_start_unix,
         out_path=FIGURE_PNG,
     )

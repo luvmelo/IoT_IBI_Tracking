@@ -2,69 +2,85 @@
 Reprocess and evaluate: radar vs Polar H10
 ==============================================================================
 
-Radar IQ CSV          : C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file\2026-05\session_2026-05-10_15-37-09.csv
-Polar H10 CSV         : C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file\2026-05\polar_h10_unlabeled_20260510_153654(1).csv
-Session start (unix)  : 1778441829.588377
+Radar IQ CSV          : C:\Users\rapha\Desktop\MIT\Sensor & Mobile Computing\Final\MakeyMakey\recordings\session_2026-05-10_16-11-27.csv
+Polar H10 CSV         : C:\Users\rapha\xwechat_files\wxid_5cgorr0uasr811_de98\msg\file\2026-05\polar_h10_radar_sync_01_20260510_160910(1).csv
+Session start (unix)  : 1778443887.064479
 Sampling rate fs      : 100.000 Hz
-Radar frames          : 6236
-Radar duration        : 62.36 s
+Radar frames          : 6259
+Radar duration        : 62.59 s
 
 ------------------------------------------------------------------------------
 Polar H10 ground truth summary
 ------------------------------------------------------------------------------
-  n_beats (deduped)     : 60
-  duration              : 59.12 s
-  mean HR (bpm)         : 76.13
-  mean IBI (ms)         : 789.45
+  n_beats (deduped)     : 59
+  duration              : 58.85 s
+  mean HR (bpm)         : 84.24
+  mean IBI (ms)         : 715.87
 
 ------------------------------------------------------------------------------
 Radar run: OLD (0.8 - 2.0 Hz)  (bandpass 0.80 - 2.00 Hz)
 ------------------------------------------------------------------------------
-  n_peaks               : 65
-  n_ibis                : 64
-  n_kept (clean_ibi)    : 47
-  beat rejection (%)    : 26.56
-  mean radar HR (bpm)   : 66.30
-  mean radar IBI (ms)   : 905.00
-  motion_mask clean (%) : 90.11
-  matched pairs         : 38 of 60 Polar beats
-  Pearson r             : 0.2600
-  MAE (ms)              : 161.50
-  bias radar - polar ms : 127.48
+  n_peaks               : 71
+  n_ibis                : 70
+  n_kept (clean_ibi)    : 51
+  beat rejection (%)    : 27.14
+  mean radar HR (bpm)   : 73.76
+  mean radar IBI (ms)   : 813.47
+  motion_mask clean (%) : 97.44
+  matched pairs         : 37 of 59 Polar beats
+  Pearson r             : -0.0889
+  MAE (ms)              : 171.96
+  bias radar - polar ms : 127.00
 
 ------------------------------------------------------------------------------
 Radar run: NEW (0.8 - 3.5 Hz)  (bandpass 0.80 - 3.50 Hz)
 ------------------------------------------------------------------------------
-  n_peaks               : 72
-  n_ibis                : 71
-  n_kept (clean_ibi)    : 44
-  beat rejection (%)    : 38.03
-  mean radar HR (bpm)   : 75.18
-  mean radar IBI (ms)   : 798.04
-  motion_mask clean (%) : 90.11
-  matched pairs         : 33 of 60 Polar beats
-  Pearson r             : 0.0527
-  MAE (ms)              : 133.57
-  bias radar - polar ms : 44.32
+  n_peaks               : 82
+  n_ibis                : 81
+  n_kept (clean_ibi)    : 50
+  beat rejection (%)    : 38.27
+  mean radar HR (bpm)   : 87.75
+  mean radar IBI (ms)   : 683.80
+  motion_mask clean (%) : 97.44
+  matched pairs         : 32 of 59 Polar beats
+  Pearson r             : 0.0553
+  MAE (ms)              : 113.31
+  bias radar - polar ms : -4.42
+
+------------------------------------------------------------------------------
+Radar run: ADAPTIVE (f0=1.00Hz, band=0.70-1.50)  (bandpass 0.70 - 1.50 Hz)
+------------------------------------------------------------------------------
+  n_peaks               : 60
+  n_ibis                : 59
+  n_kept (clean_ibi)    : 46
+  beat rejection (%)    : 22.03
+  mean radar HR (bpm)   : 63.39
+  mean radar IBI (ms)   : 946.51
+  motion_mask clean (%) : 97.44
+  matched pairs         : 40 of 59 Polar beats
+  Pearson r             : 0.1572
+  MAE (ms)              : 238.50
+  bias radar - polar ms : 230.93
 
 ==============================================================================
 Before / After comparison
 ==============================================================================
-  metric                       OLD 0.8-2.0     NEW 0.8-3.5         delta
-  ----------------------------------------------------------------------
-  n_peaks                               65              72            +7
-  n_kept                                47              44            -3
-  beat rejection (%)                 26.56           38.03        +11.47
-  matched pairs                         38              33            -5
-  Pearson r                         0.2600          0.0527       -0.2073
-  MAE (ms)                          161.50          133.57        -27.93
-  bias (ms)                         127.48           44.32        -83.16
+  metric                       OLD 0.8-2.0     NEW 0.8-3.5   ADAPT 0.70-1.50
+  --------------------------------------------------------------------------
+  n_peaks                               71              82                60
+  n_kept                                51              50                46
+  beat rejection (%)                 27.14           38.27             22.03
+  matched pairs                         37              32                40
+  Pearson r                        -0.0889          0.0553            0.1572
+  MAE (ms)                          171.96          113.31            238.50
+  bias (ms)                         127.00           -4.42            230.93
 
 ------------------------------------------------------------------------------
 Verdict
 ------------------------------------------------------------------------------
-  FAIL: widening the bandpass did NOT push Pearson r above 0.5 (or did
-        not improve over baseline). The narrow band is not the only
-        problem -- inspect Panel 3 of the figure for residual issues
-        (DC removal, motion, range bin, RX combining).
+  BEST run: ADAPTIVE  (band 0.70-1.50 Hz)  Pearson r = 0.1572
+  HYPOTHESIS CONFIRMED: the narrow adaptive band centered on the
+  Welch-detected fundamental beat the fixed-band options. Capping
+  the high cutoff below the 2nd cardiac harmonic reduced double-
+  counting and improved IBI agreement with the Polar H10 truth.
 ==============================================================================

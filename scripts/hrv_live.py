@@ -257,7 +257,7 @@ def compute_beats(z, fs, *, band=(0.8, 2.0), detrend_window_s=2.0,
             "hrv": _empty_hrv(),
             "n_too_short": True,
             "n_rx_used": n_rx_used,
-            "band_used": tuple(band),
+            "band_used": tuple(band) if band is not None else _AUTO_BAND_FALLBACK,
             "f0_estimated_hz": None,
         }
 
@@ -282,19 +282,23 @@ def compute_beats(z, fs, *, band=(0.8, 2.0), detrend_window_s=2.0,
     phi_clean = despike_hampel(phi_detrended)
     motion_ok = motion_mask(phi_clean, fs=fs)
 
-    # Bandpass selection. Default uses the user-supplied (or default
-    # 0.8-2.0) band. With adaptive_band=True we additionally narrow
-    # around the Welch-estimated f0; this gains accuracy on clean
-    # signals but can lock onto a noise peak on low-SNR recordings
-    # (see backtest in dev notes). Off by default.
-    band_resolved = tuple(band)
-    f0_estimated_hz = _estimate_f0_welch(phi_clean, fs) if adaptive_band else None
-    if adaptive_band and f0_estimated_hz is not None and f0_estimated_hz > 0:
-        narrow_low = max(_NARROW_LOW_FLOOR, f0_estimated_hz - _NARROW_HALF_HZ)
-        narrow_high = min(band[1], f0_estimated_hz + _NARROW_HALF_HZ,
-                          _HARMONIC_SAFETY_RATIO * f0_estimated_hz)
-        if narrow_high > narrow_low + 0.1:
-            band_resolved = (narrow_low, narrow_high)
+    # Bandpass selection. Three modes:
+    #   1) band is None        — full adaptive: call _adaptive_band(phi, fs)
+    #                            to pick a narrow band centered on Welch f0.
+    #   2) band tuple + adaptive_band=True — narrow the explicit band around
+    #                            the Welch-estimated f0 (legacy hybrid path).
+    #   3) band tuple + adaptive_band=False — use the explicit band as-is.
+    if band is None:
+        band_resolved, f0_estimated_hz = _adaptive_band(phi_clean, fs)
+    else:
+        band_resolved = tuple(band)
+        f0_estimated_hz = _estimate_f0_welch(phi_clean, fs) if adaptive_band else None
+        if adaptive_band and f0_estimated_hz is not None and f0_estimated_hz > 0:
+            narrow_low = max(_NARROW_LOW_FLOOR, f0_estimated_hz - _NARROW_HALF_HZ)
+            narrow_high = min(band[1], f0_estimated_hz + _NARROW_HALF_HZ,
+                              _HARMONIC_SAFETY_RATIO * f0_estimated_hz)
+            if narrow_high > narrow_low + 0.1:
+                band_resolved = (narrow_low, narrow_high)
 
     heartbeat = extract_heartbeat(phi_clean, fs=fs,
                                   low_hz=band_resolved[0],
@@ -560,7 +564,7 @@ def post_process_and_save(rec, args, fs, range_res):
                 w.writerow(row)
 
     # ---- run radar_analysis pipeline ----
-    pipe = compute_beats(iq, fs, band=(args.low, args.high),
+    pipe = compute_beats(iq, fs, band=None if args.auto else (args.low, args.high),
                          adaptive_band=args.adaptive_band)
     peak_times_s = pipe["peak_times_s"]
     ibi_ms = pipe["ibi_ms"]
@@ -577,7 +581,7 @@ def post_process_and_save(rec, args, fs, range_res):
         f.write(f"# session_start_unix: {start_unix:.6f}\n")
         bp_used = pipe.get("band_used", (args.low, args.high))
         f0_used = pipe.get("f0_estimated_hz")
-        bp_mode = "adaptive" if (args.low is None or args.high is None) else "manual"
+        bp_mode = "adaptive" if args.auto else "manual"
         f.write(f"# bandpass_hz: {bp_used[0]:.3f}-{bp_used[1]:.3f}\n")
         f.write(f"# bandpass_mode: {bp_mode}\n")
         if f0_used is not None:
@@ -712,7 +716,8 @@ def build_window(args, fs, n_bins, range_res, shared: SharedState):
     p2_curve = p2.plot(pen="y")
 
     gl.nextRow()
-    p3 = gl.addPlot(title=f"Bandpass {args.low}-{args.high} Hz (heartbeat)")
+    _title_band = "AUTO (per-tick adaptive)" if args.auto else f"{args.low}-{args.high} Hz"
+    p3 = gl.addPlot(title=f"Bandpass {_title_band} (heartbeat)")
     p3.setLabel("bottom", "Time (s)")
     p3.setLabel("left", "Amplitude")
     p3_curve = p3.plot(pen="m")
@@ -873,7 +878,7 @@ def build_window(args, fs, n_bins, range_res, shared: SharedState):
         # All filtering / detection happens inside compute_beats() so the
         # BPM number you see live is what the next Stop & Save will report.
         iq = np.asarray(iq_buf)
-        band_arg = (args.low, args.high) if (args.low and args.high) else None
+        band_arg = None if args.auto else (args.low, args.high)
         pipe = compute_beats(iq, fs, band=band_arg)
         phi_clean = pipe["phi_clean"]
         hb = pipe["heartbeat"]
@@ -1003,6 +1008,12 @@ def main():
                          "cardiac harmonic for any HR ≤120 BPM "
                          "(critical to avoid double-detection — see "
                          "the gate-8 backtest).")
+    ap.add_argument("--auto", action="store_true",
+                    help="Use adaptive (Welch-based) bandpass — overrides --low/--high. "
+                         "Per-tick the script estimates the heartbeat fundamental f0 "
+                         "and picks a narrow band around it (f0 ± 0.5 Hz, capped at 1.7*f0 "
+                         "to exclude the 2nd cardiac harmonic). Recommended for HR ≥ 80 BPM "
+                         "where the 2nd harmonic falls inside a fixed wide band.")
     ap.add_argument("--adaptive-band", action="store_true",
                     help="Narrow the bandpass around the Welch-estimated "
                          "f0 (in addition to the explicit band). Off by "
